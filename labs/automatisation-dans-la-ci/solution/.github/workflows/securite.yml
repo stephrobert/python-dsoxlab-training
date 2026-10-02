@@ -1,0 +1,43 @@
+# Solution de référence : security_check.py devient une porte du pipeline.
+#
+# Les tests de l'outil passent d'abord : un outil cassé ne doit pas décider
+# d'un déploiement. Puis l'outil lit le rapport du scanner et arrête le job dès
+# qu'une vulnérabilité CRITICAL est présente (code 1), ou si le rapport est
+# inexploitable (code 2).
+name: Porte de sécurité
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Le job lit le code et rien d'autre.
+permissions:
+  contents: read
+
+jobs:
+  porte:
+    name: Tests de l'outil, puis seuil CRITICAL
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Installer uv
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          # Sans `version`, l'action prend la dernière publiée : le pipeline
+          # changerait d'outil sans qu'une ligne du dépôt ait bougé.
+          version: "0.12.21"
+
+      - name: Installer les dépendances verrouillées
+        run: uv sync --locked
+
+      - name: Tester l'outil
+        run: uv run pytest -v
+
+      - name: Appliquer le seuil
+        run: uv run python security_check.py rapports/trivy.json --fail-on CRITICAL

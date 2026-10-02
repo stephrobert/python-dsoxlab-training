@@ -83,7 +83,12 @@ def _guide_cell(lab: dict, lang: str) -> str:
     url = lab.get("doc_url", "")
     if not url:
         return "-"
-    # Même mot dans les deux langues : la condition ne servait à rien.
+    # Le README anglais dit quand le guide n'existe qu'en français : la
+    # formation Python n'a pas encore de version anglaise (relevé le
+    # 2026-10-02), et un lecteur anglophone doit le savoir avant de cliquer.
+    # Une leçon traduite se désigne par son adresse `/en/`, et perd la mention.
+    if lang == "en" and "/en/" not in url:
+        return f"[guide]({url}) (in French)"
     return f"[guide]({url})"
 
 

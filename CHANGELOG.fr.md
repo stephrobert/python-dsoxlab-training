@@ -13,7 +13,7 @@ modifications du catalogue, et l'unité qui compte est le lab.
 
 ### Ajouté
 
-- **La section `automatisation`**, cinq labs qui construisent un seul outil,
+- **La section `automatisation`**, six labs qui construisent un seul outil,
   `security_check.py`, pour la piste Automatisation de la formation Python du
   blog (2026-10-02). Chaque lab part de la solution du précédent :
   - `automatisation-lire-un-rapport` lit un export JSON de findings et les
@@ -27,7 +27,12 @@ modifications du catalogue, et l'unité qui compte est le lab.
   - `automatisation-code-de-sortie` passe sous Click et ajoute `--fail-on` :
     0, 1 ou 2, les codes qu'un pipeline exploite ;
   - `automatisation-tester-son-outil` note la suite pytest de l'apprenant sur
-    quatre mutants de l'outil de référence.
-- Les cinq labs éprouvés dans les deux sens par `scripts/valider-labs.py` :
+    quatre mutants de l'outil de référence ;
+  - `automatisation-dans-la-ci` fait de l'outil une porte dans GitHub
+    Actions : les tests d'abord, puis le seuil CRITICAL, joué avec act. Le
+    seul lab qui demande Docker.
+- La table anglaise des README signale les guides qui n'existent qu'en
+  français.
+- Les labs éprouvés dans les deux sens par `scripts/valider-labs.py` :
   0 avant le travail, 100 après la solution, 0 à nouveau après `clean` et
   `run`. Verdicts dans `validation-labs.json`.

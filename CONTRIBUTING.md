@@ -17,8 +17,10 @@ mise install                   # the pinned uv and Python
 dsoxlab validate-structure     # check the contract
 ```
 
-No VM, no Docker, no `dsoxlab provision`: every lab is `runtime: shell`, and
-the learner's tool runs on their own machine, in its own uv project.
+No VM, no `dsoxlab provision`: every lab is `runtime: shell`, and the
+learner's tool runs on their own machine, in its own uv project. Only the
+last lab, `automatisation-dans-la-ci`, needs Docker: act plays its workflow
+in the runner image pinned by digest in `.actrc`.
 
 ## The running thread
 

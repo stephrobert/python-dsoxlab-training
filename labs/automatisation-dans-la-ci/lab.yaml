@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/stephrobert/dsoxlab/main/schemas/lab.schema.json
+id: automatisation-dans-la-ci
+title: "A security gate in the pipeline: security_check.py in GitHub Actions"
+description: |
+  The tool is finished and tested; now it must guard the branch. Write the
+  GitHub Actions workflow that runs the tool's tests, then applies the
+  CRITICAL threshold to the scanner report, on every push and pull request,
+  with read-only permissions and pinned actions. act plays it locally.
+section: automatisation
+level: automatisation
+difficulty: intermediate
+lab_type: lab
+estimated_time: 40m
+skills:
+  - python
+  - github-actions
+  - ci
+  - uv
+  - security-gate
+# Le seul lab du catalogue qui demande Docker : act joue le workflow dans
+# l'image du runner ubuntu-24.04, épinglée par digest dans .actrc.
+distros:
+  - ubuntu24
+doc_url: https://blog.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/
+runtime:
+  type: shell
+  workdir: challenge/work
+  # Le point de départ est l'état final du lab automatisation-tester-son-outil :
+  # l'outil, sa suite de tests, un uv.lock, et le rapport que le scanner dépose.
+  fixtures:
+    - .actrc
+    - .gitignore
+    - pyproject.toml
+    - uv.lock
+    - security_check.py
+    - tests/test_security_check.py
+    - rapports/trivy.json
+validation:
+  functional: true
+  security: true
+  persistence_after_reboot: false

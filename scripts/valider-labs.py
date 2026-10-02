@@ -154,14 +154,25 @@ def version_attendue(nom: str) -> str:
 
 
 def photographier(lab: Path, journal) -> dict:
-    """Ce qu'un lab de ce catalogue peut laisser : son répertoire de travail."""
+    """Ce qu'un lab peut laisser : son répertoire de travail, et des conteneurs.
+
+    Seul `automatisation-dans-la-ci` lance Docker (act), mais la photographie
+    vaut pour tous : un lab qui laisserait un conteneur le dirait. Sans Docker
+    sur le poste, la liste reste vide et la comparaison n'apprend rien, ce qui
+    est exact pour les labs qui n'en ont pas besoin.
+    """
     present = workdir(lab).exists()
     journal.write(f"répertoire de travail présent : {present}\n")
-    return {"workdir_present": present}
+    conteneurs: list[str] = []
+    if shutil.which("docker"):
+        res = commande(["docker", "ps", "-a", "--format", "{{.ID}} {{.Names}} {{.Image}}"], journal, 60)
+        if res.returncode == 0:
+            conteneurs = sorted(ligne for ligne in res.stdout.splitlines() if ligne.strip())
+    return {"workdir_present": present, "conteneurs": conteneurs}
 
 
 def ecarts(avant: dict, apres: dict) -> list[str]:
-    out: list[str] = []
+    out = [f"conteneur laissé : {c}" for c in sorted(set(apres["conteneurs"]) - set(avant["conteneurs"]))]
     if apres["workdir_present"]:
         out.append("le répertoire de travail existe encore après clean")
     return out
@@ -193,7 +204,7 @@ def valider(lab: Path, rejeu: bool) -> dict:
             avant_photo = photographier(lab, journal)
             if avant_photo["workdir_present"]:
                 raise Echec("le répertoire de travail existe déjà : lancez `dsoxlab clean` avant de valider")
-            dire("état photographié, répertoire de travail absent")
+            dire(f"état photographié, répertoire de travail absent, {len(avant_photo['conteneurs'])} conteneur(s) Docker présents")
 
             res = dsoxlab(["run", ident], journal, 300)
             if res.returncode != 0:
