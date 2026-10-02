@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/stephrobert/dsoxlab/main/schemas/lab.schema.json
+id: automatisation-lire-un-rapport
+title: "Read a scanner report: count the vulnerabilities by severity"
+description: |
+  A scanner exports its findings as JSON and nobody reads the file. Write
+  version 1 of security_check.py: it reads the report, prints how many
+  findings there are per severity, and refuses a missing file or broken
+  JSON in one clear line, with exit code 2.
+section: automatisation
+# `level` reprend l'id de la section, comme les catalogues frères.
+level: automatisation
+difficulty: beginner
+lab_type: lab
+estimated_time: 30m
+skills:
+  - python
+  - json
+  - pathlib
+  - exceptions
+  - cli
+# L'outil se joue sur le poste de l'apprenant, dans son projet uv.
+distros:
+  - any
+doc_url: https://blog.stephane-robert.info/docs/developper/programmation/python/json/
+runtime:
+  type: shell
+  workdir: challenge/work
+  # Le point de départ : le projet uv et un squelette de l'outil. Une fixture
+  # non déclarée ici n'est pas copiée.
+  fixtures:
+    - .gitignore
+    - pyproject.toml
+    - security_check.py
+    - exemples/findings.json
+validation:
+  functional: true
+  security: false
+  persistence_after_reboot: false

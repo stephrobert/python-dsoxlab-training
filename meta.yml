@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/stephrobert/dsoxlab/main/schemas/meta.schema.json
+#
+# Catalogue python-dsoxlab-training, décrit par le contrat v1 de dsoxlab.
+#
+# Source de vérité de l'ordre des labs, calqué sur la piste « Automatisation »
+# de la formation Python du blog :
+#   https://blog.stephane-robert.info/docs/developper/programmation/python/parcours-fondamentaux/?profil=automatisation
+#
+# Un FIL ROUGE : les cinq labs de la section `automatisation` construisent un
+# seul outil, `security_check.py`, version après version. Le point de départ
+# d'un lab est la solution du précédent. L'ordre ci-dessous est donc celui
+# dans lequel ils se jouent, et il ne se réordonne pas.
+#
+# tests/test_meta_declare_les_labs.py refuse un lab sur disque absent d'ici,
+# et un lab déclaré ici absent du disque.
+schema_version: 1
+
+repo:
+  id: python-dsoxlab-training
+  category: python
+  title: "Python Training: verifiable labs"
+  blog_url: "https://blog.stephane-robert.info/docs/developper/programmation/python/"
+  issues_url: "https://github.com/stephrobert/python-dsoxlab-training/issues"
+  description: |
+    The Python a DevOps or DevSecOps engineer writes every week: read a
+    scanner report, query a vulnerability API, return an exit code a
+    pipeline can act on, and test the tool. One tool, security_check.py,
+    built lab after lab. Each lab has a starting point, a check that runs
+    the learner's code, a reference solution, and was proven both ways:
+    0 before the work, 100 after.
+
+# PAS de bloc `infra:` : tous les labs sont de type `shell`. L'outil se joue
+# sur le poste de l'apprenant, dans son propre projet uv (`uv run`), sans VM
+# ni Docker. Prérequis : les outils de mise.toml (`mise install`).
+
+sections:
+  - id: automatisation
+    title: "Automation: a security tool, step by step"
+    description: "Read a JSON report, query the OSV API, parse a real Trivy report, fail a pipeline above a severity threshold, and test the tool with pytest."
+    labs:
+      - automatisation-lire-un-rapport
+      - automatisation-interroger-osv
+      - automatisation-rapport-trivy
+      - automatisation-code-de-sortie
+      - automatisation-tester-son-outil

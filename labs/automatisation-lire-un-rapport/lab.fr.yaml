@@ -1,0 +1,7 @@
+id: automatisation-lire-un-rapport
+title: "Lire le rapport d'un scanner : compter les vulnérabilités par sévérité"
+description: |
+  Un scanner exporte ses findings en JSON, et personne ne lit le fichier.
+  Écrivez la version 1 de security_check.py : elle lit le rapport, affiche
+  combien il y a de findings par sévérité, et refuse un fichier absent ou un
+  JSON cassé en une ligne claire, avec le code de sortie 2.

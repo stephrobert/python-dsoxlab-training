@@ -1,0 +1,21 @@
+# Traduction française du meta.yml voisin.
+#
+# dsoxlab n'y lit que repo.title, repo.description, sections[].title et
+# sections[].description. Les sections sont appariées par `id`, jamais par
+# position.
+
+repo:
+  title: "Formation Python : les labs vérifiables"
+  description: |
+    Le Python qu'un ingénieur DevOps ou DevSecOps écrit chaque semaine : lire
+    le rapport d'un scanner, interroger une base de vulnérabilités, rendre un
+    code de sortie qu'un pipeline sait exploiter, et tester son outil. Un seul
+    outil, security_check.py, construit lab après lab. Chaque lab a un point
+    de départ, une vérification qui exécute le code de l'apprenant, une
+    solution de référence, et a été éprouvé dans les deux sens : 0 avant le
+    travail, 100 après.
+
+sections:
+  - id: automatisation
+    title: "Automatisation : un outil de sécurité, pas à pas"
+    description: "Lire un rapport JSON, interroger l'API OSV, analyser un vrai rapport Trivy, faire échouer un pipeline au-delà d'un seuil de sévérité, et tester l'outil avec pytest."

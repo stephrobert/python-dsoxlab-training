@@ -1,0 +1,6 @@
+[project]
+name = "security-check"
+version = "0.1.0"
+description = "Summarise vulnerability reports for a CI pipeline"
+requires-python = ">=3.12"
+dependencies = []

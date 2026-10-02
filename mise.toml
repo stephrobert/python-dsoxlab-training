@@ -1,0 +1,11 @@
+# Les outils du catalogue, épinglés. `mise install` les pose à la version
+# mesurée ici, sans curl d'archive ni gestionnaire de paquets système.
+#
+# uv lance l'outil de l'apprenant dans SON projet (`uv run`), avec ses
+# dépendances : les tests de dsoxlab tournent dans l'environnement de
+# dsoxlab, qui n'a ni requests ni click (voir CLAUDE.md, « Architecture »).
+# Versions relevées le 2026-10-02 (`mise ls-remote uv | tail -1`).
+
+[tools]
+uv = "0.12.21"
+python = "3.14.8"
