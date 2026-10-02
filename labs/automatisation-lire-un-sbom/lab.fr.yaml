@@ -1,0 +1,8 @@
+id: automatisation-lire-un-sbom
+title: "Lire un SBOM : croiser un inventaire CycloneDX avec la base OSV"
+description: |
+  Un SBOM liste ce que vous livrez, pas ce qui y est vulnérable. Apprenez à
+  security_check.py à lire un vrai SBOM CycloneDX produit par syft, à
+  interroger OSV pour chaque composant PyPI, à faire de chaque vulnérabilité
+  connue un finding avec la sévérité de son avis GitHub, et à lui appliquer
+  le même seuil.

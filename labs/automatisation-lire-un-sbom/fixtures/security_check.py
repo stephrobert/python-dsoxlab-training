@@ -10,6 +10,9 @@ l'outil le droit d'arrêter un pipeline. Les codes de sortie :
 
     uv run python security_check.py rapports/trivy.json --fail-on CRITICAL
 
+La version 5 lit aussi un SBOM CycloneDX (sbom/tableau-de-bord.cdx.json) et
+le croise avec OSV : l'énoncé est dans challenge/README.md (`dsoxlab challenge`).
+
 L'adresse de l'API OSV se règle par OSV_API_URL (https://api.osv.dev par
 défaut), le délai maximal d'un appel par OSV_TIMEOUT, en secondes.
 """

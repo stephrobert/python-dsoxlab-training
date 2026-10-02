@@ -13,7 +13,7 @@ unit that matters is the lab.
 
 ### Added
 
-- **The `automatisation` section**, six labs that build one tool,
+- **The `automatisation` section**, seven labs that build one tool,
   `security_check.py`, for the Automation track of the blog's Python course
   (2026-10-02). Each lab starts from the previous lab's solution:
   - `automatisation-lire-un-rapport` reads a JSON export of findings and
@@ -29,7 +29,10 @@ unit that matters is the lab.
     four mutants of the reference tool;
   - `automatisation-dans-la-ci` makes the tool a gate in GitHub Actions:
     tests first, then the CRITICAL threshold, played with act. The only lab
-    that needs Docker.
+    that needs Docker;
+  - `automatisation-lire-un-sbom` crosses a real CycloneDX SBOM (syft
+    1.51.1) with OSV: each known vulnerability becomes a finding, with the
+    severity of its GitHub advisory (MODERATE as MEDIUM).
 - The README's English table marks guides that only exist in French.
 - All labs proven in both directions by `scripts/valider-labs.py`:
   0 before the work, 100 after the solution, 0 again after `clean` and
