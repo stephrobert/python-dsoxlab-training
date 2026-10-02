@@ -113,7 +113,7 @@
    "total": 5
   },
   "date": "2026-10-02",
-  "duree_s": 3,
+  "duree_s": 2,
   "ecarts": [],
   "etapes": [
    "état photographié, répertoire de travail absent",
@@ -160,7 +160,7 @@
    "total": 5
   },
   "date": "2026-10-02",
-  "duree_s": 6,
+  "duree_s": 5,
   "ecarts": [],
   "etapes": [
    "état photographié, répertoire de travail absent",
@@ -179,6 +179,53 @@
     "test_les_deux_formats_restent_lisibles",
     "test_osv_interroge_les_paquets_du_rapport_trivy",
     "test_un_rapport_trivy_genere_est_dedoublonne"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "uv": "0.12.21",
+  "verdict": "VALIDE"
+ },
+ "automatisation-tester-son-outil": {
+  "apres": {
+   "echecs": [],
+   "passed": 5,
+   "score": 100,
+   "total": 5
+  },
+  "avant": {
+   "echecs": [
+    "test_la_suite_attrape_des_doublons_trivy",
+    "test_la_suite_attrape_un_rapport_absent_qui_rend_1",
+    "test_la_suite_attrape_un_seuil_exclusif",
+    "test_la_suite_attrape_une_casse_non_normalisee",
+    "test_la_suite_passe_sur_l_outil_juste_et_compte_assez_de_tests"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "date": "2026-10-02",
+  "duree_s": 5,
+  "ecarts": [],
+  "etapes": [
+   "état photographié, répertoire de travail absent",
+   "avant le travail : 0/5",
+   "après la solution : 5/5",
+   "après clean et run : 0/5",
+   "poste rendu intact"
+  ],
+  "journal": ".cache/dsoxlab/python-dsoxlab-training/validation-automatisation-tester-son-outil.log",
+  "python": "3.14.8",
+  "raisons": [],
+  "rejeu": {
+   "echecs": [
+    "test_la_suite_attrape_des_doublons_trivy",
+    "test_la_suite_attrape_un_rapport_absent_qui_rend_1",
+    "test_la_suite_attrape_un_seuil_exclusif",
+    "test_la_suite_attrape_une_casse_non_normalisee",
+    "test_la_suite_passe_sur_l_outil_juste_et_compte_assez_de_tests"
    ],
    "passed": 0,
    "score": 0,

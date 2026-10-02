@@ -42,4 +42,4 @@ sections:
       - automatisation-interroger-osv
       - automatisation-rapport-trivy
       - automatisation-code-de-sortie
-      # - automatisation-tester-son-outil   # en chantier
+      - automatisation-tester-son-outil

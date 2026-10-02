@@ -1,0 +1,8 @@
+id: automatisation-tester-son-outil
+title: "Tester son outil : une suite pytest qui attrape quatre vrais bugs"
+description: |
+  Un outil qui décide si un pipeline s'arrête ne doit pas changer de
+  comportement sans que personne le voie. Écrivez la suite pytest de
+  security_check.py. Elle est notée sur ce qu'elle attrape : passer sur
+  l'outil juste, et échouer sur quatre mutants qui portent chacun un bug
+  réaliste.

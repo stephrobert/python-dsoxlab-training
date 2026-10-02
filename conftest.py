@@ -117,15 +117,17 @@ def lire_resume(sortie: str) -> dict[str, int]:
 def compter(severites: list[str]) -> dict[str, int]:
     """Le résumé attendu pour une liste de sévérités brutes."""
     attendu = dict.fromkeys(SEVERITES, 0)
-    for s in severites:
-        s = (s or "").upper()
+    for brute in severites:
+        s = (brute or "").upper()
         attendu[s if s in SEVERITES else "UNKNOWN"] += 1
     attendu["TOTAL"] = len(severites)
     return attendu
 
 
 def tirage(graine: int | None = None) -> random.Random:
-    return random.Random(graine if graine is not None else time.time_ns())
+    # Des données de test, pas un secret : un générateur ordinaire suffit, et
+    # sa graine se rejoue.
+    return random.Random(graine if graine is not None else time.time_ns())  # noqa: S311
 
 
 def findings_au_hasard(rnd: random.Random, n: int | None = None) -> list[dict]:

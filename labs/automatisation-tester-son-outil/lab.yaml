@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/stephrobert/dsoxlab/main/schemas/lab.schema.json
+id: automatisation-tester-son-outil
+title: "Test your own tool: a pytest suite that catches four real bugs"
+description: |
+  A tool that decides whether a pipeline stops must not change behaviour
+  unnoticed. Write the pytest suite of security_check.py. It is graded on
+  what it catches: it must pass on the correct tool and fail on four
+  mutants, each carrying one realistic bug.
+section: automatisation
+level: automatisation
+difficulty: intermediate
+lab_type: lab
+estimated_time: 45m
+skills:
+  - python
+  - pytest
+  - testing
+  - click
+  - mutation-testing
+distros:
+  - any
+doc_url: https://blog.stephane-robert.info/docs/developper/programmation/python/tests/pytest/
+runtime:
+  type: shell
+  workdir: challenge/work
+  # Le point de départ est la solution du lab automatisation-code-de-sortie,
+  # plus un fichier de tests qui ne contient qu'un exemple.
+  fixtures:
+    - .gitignore
+    - pyproject.toml
+    - security_check.py
+    - exemples/findings.json
+    - exemples/trivy.json
+    - tests/test_security_check.py
+validation:
+  functional: true
+  security: false
+  persistence_after_reboot: false
