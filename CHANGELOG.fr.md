@@ -13,7 +13,7 @@ modifications du catalogue, et l'unité qui compte est le lab.
 
 ### Ajouté
 
-- **La section `automatisation`**, six labs qui construisent un seul outil,
+- **La section `automatisation`**, sept labs qui construisent un seul outil,
   `security_check.py`, pour la piste Automatisation de la formation Python du
   blog (2026-10-02). Chaque lab part de la solution du précédent :
   - `automatisation-lire-un-rapport` lit un export JSON de findings et les
@@ -30,7 +30,10 @@ modifications du catalogue, et l'unité qui compte est le lab.
     quatre mutants de l'outil de référence ;
   - `automatisation-dans-la-ci` fait de l'outil une porte dans GitHub
     Actions : les tests d'abord, puis le seuil CRITICAL, joué avec act. Le
-    seul lab qui demande Docker.
+    seul lab qui demande Docker ;
+  - `automatisation-lire-un-sbom` croise un vrai SBOM CycloneDX (syft
+    1.51.1) avec OSV : chaque vulnérabilité connue devient un finding, avec
+    la sévérité de son avis GitHub (MODERATE en MEDIUM).
 - La table anglaise des README signale les guides qui n'existent qu'en
   français.
 - Les labs éprouvés dans les deux sens par `scripts/valider-labs.py` :

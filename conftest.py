@@ -165,12 +165,15 @@ def ecrire_json(chemin: Path, donnees: object) -> Path:
 class ServeurOSV:
     """Un serveur HTTP local qui répond comme `POST /v1/query` d'OSV.
 
-    `reponses` associe un nom de paquet à la liste des identifiants de
-    vulnérabilités à rendre ; `requetes` garde chaque corps reçu, pour vérifier
+    `reponses` associe un nom de paquet aux vulnérabilités à rendre : une
+    liste d'identifiants, ou un dictionnaire identifiant -> sévérité, rendue
+    comme OSV la porte pour les avis GitHub (`database_specific.severity`,
+    `MODERATE` compris) ; une sévérité `None` n'en porte aucune, comme les
+    avis PYSEC ; `requetes` garde chaque corps reçu, pour vérifier
     ce que l'outil a VRAIMENT demandé. `statut` et `delai` simulent une panne.
     """
 
-    reponses: dict[str, list[str]] = field(default_factory=dict)
+    reponses: dict[str, list[str] | dict[str, str | None]] = field(default_factory=dict)
     requetes: list[dict] = field(default_factory=list)
     statut: int = 200
     delai: float = 0.0
@@ -198,8 +201,15 @@ def serveur_osv() -> Iterator[ServeurOSV]:
                 self.wfile.write(b'{"code":13,"message":"internal error"}')
                 return
             nom = ((corps.get("package") or {}).get("name") or "") if isinstance(corps, dict) else ""
-            vulns = [{"id": i, "summary": f"Vulnerability {i}", "aliases": []}
-                     for i in etat.reponses.get(nom, [])]
+            connues = etat.reponses.get(nom, [])
+            if not isinstance(connues, dict):
+                connues = dict.fromkeys(connues)
+            vulns = []
+            for ident, gravite in connues.items():
+                vuln = {"id": ident, "summary": f"Vulnerability {ident}", "aliases": []}
+                if gravite is not None:
+                    vuln["database_specific"] = {"severity": gravite}
+                vulns.append(vuln)
             charge = json.dumps({"vulns": vulns} if vulns else {}).encode()
             self.send_response(200)
             self.send_header("Content-Type", "application/json")

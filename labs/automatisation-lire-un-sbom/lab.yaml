@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/stephrobert/dsoxlab/main/schemas/lab.schema.json
+id: automatisation-lire-un-sbom
+title: "Read an SBOM: cross a CycloneDX inventory with the OSV database"
+description: |
+  An SBOM lists what you ship, not what is vulnerable in it. Teach
+  security_check.py to read a real CycloneDX SBOM produced by syft, query
+  OSV for each PyPI component, turn every known vulnerability into a finding
+  with the severity of its GitHub advisory, and apply the same threshold.
+section: automatisation
+level: automatisation
+difficulty: intermediate
+lab_type: lab
+estimated_time: 45m
+skills:
+  - python
+  - sbom
+  - cyclonedx
+  - osv
+  - supply-chain
+distros:
+  - any
+doc_url: https://blog.stephane-robert.info/docs/securiser/supply-chain/sbom/
+runtime:
+  type: shell
+  workdir: challenge/work
+  # Le point de départ est l'état final du lab automatisation-dans-la-ci,
+  # plus un vrai SBOM CycloneDX 1.7 produit par syft 1.51.1.
+  fixtures:
+    - .actrc
+    - .gitignore
+    - .github/workflows/securite.yml
+    - pyproject.toml
+    - uv.lock
+    - security_check.py
+    - tests/test_security_check.py
+    - rapports/trivy.json
+    - sbom/tableau-de-bord.cdx.json
+validation:
+  functional: true
+  security: false
+  persistence_after_reboot: false

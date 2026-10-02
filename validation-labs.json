@@ -60,7 +60,7 @@
    "total": 5
   },
   "date": "2026-10-02",
-  "duree_s": 20,
+  "duree_s": 21,
   "ecarts": [],
   "etapes": [
    "état photographié, répertoire de travail absent, 17 conteneur(s) Docker présents",
@@ -167,6 +167,53 @@
     "test_un_fichier_absent_se_dit_sans_trace",
     "test_un_json_invalide_se_dit_sans_trace",
     "test_un_rapport_vide_rend_des_zeros"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "uv": "0.12.21",
+  "verdict": "VALIDE"
+ },
+ "automatisation-lire-un-sbom": {
+  "apres": {
+   "echecs": [],
+   "passed": 5,
+   "score": 100,
+   "total": 5
+  },
+  "avant": {
+   "echecs": [
+    "test_chaque_composant_pypi_est_interroge_une_fois",
+    "test_le_resume_compte_les_vulnerabilites_connues_d_osv",
+    "test_le_seuil_s_applique_a_un_sbom",
+    "test_les_rapports_restent_lisibles_et_les_composants_npm_ignores",
+    "test_un_sbom_sans_osv_est_une_entree_inexploitable"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "date": "2026-10-02",
+  "duree_s": 9,
+  "ecarts": [],
+  "etapes": [
+   "état photographié, répertoire de travail absent, 17 conteneur(s) Docker présents",
+   "avant le travail : 0/5",
+   "après la solution : 5/5",
+   "après clean et run : 0/5",
+   "poste rendu intact"
+  ],
+  "journal": ".cache/dsoxlab/python-dsoxlab-training/validation-automatisation-lire-un-sbom.log",
+  "python": "3.14.8",
+  "raisons": [],
+  "rejeu": {
+   "echecs": [
+    "test_chaque_composant_pypi_est_interroge_une_fois",
+    "test_le_resume_compte_les_vulnerabilites_connues_d_osv",
+    "test_le_seuil_s_applique_a_un_sbom",
+    "test_les_rapports_restent_lisibles_et_les_composants_npm_ignores",
+    "test_un_sbom_sans_osv_est_une_entree_inexploitable"
    ],
    "passed": 0,
    "score": 0,

@@ -42,6 +42,7 @@ le dernier lab demande Docker, pour act.
 | `automatisation-code-de-sortie` | Un code de sortie qu'un pipeline sait exploiter : --fail-on avec Click | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/developper/programmation/python/click/) |
 | `automatisation-tester-son-outil` | Tester son outil : une suite pytest qui attrape quatre vrais bugs | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/developper/programmation/python/tests/pytest/) |
 | `automatisation-dans-la-ci` | Une porte de sécurité dans le pipeline : security_check.py dans GitHub Actions | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/) |
+| `automatisation-lire-un-sbom` | Lire un SBOM : croiser un inventaire CycloneDX avec la base OSV | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/securiser/supply-chain/sbom/) |
 
-_6 labs, table générée par `scripts/gen_catalog.py`._
+_7 labs, table générée par `scripts/gen_catalog.py`._
 <!-- LABS:END -->
