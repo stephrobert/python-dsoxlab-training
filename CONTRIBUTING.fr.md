@@ -17,9 +17,10 @@ mise install                   # uv et Python épinglés
 dsoxlab validate-structure     # vérifier le contrat
 ```
 
-Ni VM, ni Docker, ni `dsoxlab provision` : tous les labs sont en
-`runtime: shell`, et l'outil de l'apprenant tourne sur son poste, dans son
-propre projet uv.
+Ni VM ni `dsoxlab provision` : tous les labs sont en `runtime: shell`, et
+l'outil de l'apprenant tourne sur son poste, dans son propre projet uv. Seul
+le dernier lab, `automatisation-dans-la-ci`, demande Docker : act y joue le
+workflow dans l'image du runner épinglée par digest dans `.actrc`.
 
 ## Le fil rouge
 

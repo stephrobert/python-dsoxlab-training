@@ -1,0 +1,8 @@
+id: automatisation-dans-la-ci
+title: "Une porte de sécurité dans le pipeline : security_check.py dans GitHub Actions"
+description: |
+  L'outil est fini et testé ; il doit maintenant garder la branche. Écrivez
+  le workflow GitHub Actions qui lance les tests de l'outil, puis applique le
+  seuil CRITICAL au rapport du scanner, à chaque push et à chaque pull
+  request, avec des droits en lecture seule et des actions épinglées. act le
+  joue sur votre poste.

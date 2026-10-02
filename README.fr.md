@@ -28,8 +28,8 @@ dsoxlab run   automatisation-lire-un-rapport
 dsoxlab check automatisation-lire-un-rapport
 ```
 
-Aucune VM, aucun Docker : l'outil tourne sur votre poste, dans son propre
-projet uv.
+Aucune VM : l'outil tourne sur votre poste, dans son propre projet uv. Seul
+le dernier lab demande Docker, pour act.
 
 <!-- LABS:START -->
 ### Automatisation : un outil de sécurité, pas à pas
@@ -41,6 +41,7 @@ projet uv.
 | `automatisation-rapport-trivy` | Lire un vrai rapport Trivy : résultats imbriqués, clés absentes et doublons | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/developper/programmation/python/dictionnaire/) |
 | `automatisation-code-de-sortie` | Un code de sortie qu'un pipeline sait exploiter : --fail-on avec Click | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/developper/programmation/python/click/) |
 | `automatisation-tester-son-outil` | Tester son outil : une suite pytest qui attrape quatre vrais bugs | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/developper/programmation/python/tests/pytest/) |
+| `automatisation-dans-la-ci` | Une porte de sécurité dans le pipeline : security_check.py dans GitHub Actions | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/) |
 
-_5 labs, table générée par `scripts/gen_catalog.py`._
+_6 labs, table générée par `scripts/gen_catalog.py`._
 <!-- LABS:END -->

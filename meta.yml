@@ -36,10 +36,11 @@ repo:
 sections:
   - id: automatisation
     title: "Automation: a security tool, step by step"
-    description: "Read a JSON report, query the OSV API, parse a real Trivy report, fail a pipeline above a severity threshold, and test the tool with pytest."
+    description: "Read a JSON report, query the OSV API, parse a real Trivy report, fail a pipeline above a severity threshold, test the tool with pytest, and make it a gate in GitHub Actions."
     labs:
       - automatisation-lire-un-rapport
       - automatisation-interroger-osv
       - automatisation-rapport-trivy
       - automatisation-code-de-sortie
       - automatisation-tester-son-outil
+      - automatisation-dans-la-ci

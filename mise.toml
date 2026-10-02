@@ -9,3 +9,7 @@
 [tools]
 uv = "0.12.21"
 python = "3.14.8"
+# act joue le workflow du lab automatisation-dans-la-ci, le seul qui demande
+# Docker. 0.2.89 comme github-actions-training : toute version antérieure à
+# 0.2.86 est vulnérable à CVE-2026-34041 et CVE-2026-34042.
+act = "0.2.89"

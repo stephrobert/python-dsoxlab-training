@@ -13,7 +13,7 @@ unit that matters is the lab.
 
 ### Added
 
-- **The `automatisation` section**, five labs that build one tool,
+- **The `automatisation` section**, six labs that build one tool,
   `security_check.py`, for the Automation track of the blog's Python course
   (2026-10-02). Each lab starts from the previous lab's solution:
   - `automatisation-lire-un-rapport` reads a JSON export of findings and
@@ -26,7 +26,11 @@ unit that matters is the lab.
   - `automatisation-code-de-sortie` moves to Click and adds `--fail-on`:
     0, 1 or 2, the codes a pipeline acts on;
   - `automatisation-tester-son-outil` grades the learner's pytest suite on
-    four mutants of the reference tool.
-- All five labs proven in both directions by `scripts/valider-labs.py`:
+    four mutants of the reference tool;
+  - `automatisation-dans-la-ci` makes the tool a gate in GitHub Actions:
+    tests first, then the CRITICAL threshold, played with act. The only lab
+    that needs Docker.
+- The README's English table marks guides that only exist in French.
+- All labs proven in both directions by `scripts/valider-labs.py`:
   0 before the work, 100 after the solution, 0 again after `clean` and
   `run`. Verdicts in `validation-labs.json`.
