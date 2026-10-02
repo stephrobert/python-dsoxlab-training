@@ -1,0 +1,11 @@
+[project]
+name = "security-check"
+version = "0.1.0"
+description = "Summarise vulnerability reports for a CI pipeline"
+requires-python = ">=3.12"
+dependencies = [
+    # 8.3.3 corrige CVE-2026-7246 (commande injectée par click.edit) :
+    # relevé par OSV le 2026-10-02, absent de la base de Trivy ce jour-là.
+    "click>=8.5.0",
+    "requests>=2.34.2",
+]

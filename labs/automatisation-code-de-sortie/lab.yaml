@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/stephrobert/dsoxlab/main/schemas/lab.schema.json
+id: automatisation-code-de-sortie
+title: "An exit code a pipeline can act on: --fail-on with Click"
+description: |
+  A pipeline does not read what a tool prints, it reads its exit code. Move
+  security_check.py to Click and add --fail-on: 0 when nothing reaches the
+  threshold, 1 when it is reached, 2 for unusable input. Three codes a CI
+  job can tell apart.
+section: automatisation
+level: automatisation
+difficulty: intermediate
+lab_type: lab
+estimated_time: 40m
+skills:
+  - python
+  - click
+  - cli
+  - exit-codes
+  - ci
+distros:
+  - any
+doc_url: https://blog.stephane-robert.info/docs/developper/programmation/python/click/
+runtime:
+  type: shell
+  workdir: challenge/work
+  # Le point de départ est la solution du lab automatisation-rapport-trivy.
+  fixtures:
+    - .gitignore
+    - pyproject.toml
+    - security_check.py
+    - exemples/findings.json
+    - exemples/trivy.json
+validation:
+  functional: true
+  security: false
+  persistence_after_reboot: false

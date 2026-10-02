@@ -1,0 +1,7 @@
+id: automatisation-code-de-sortie
+title: "Un code de sortie qu'un pipeline sait exploiter : --fail-on avec Click"
+description: |
+  Un pipeline ne lit pas ce qu'un outil affiche, il lit son code de sortie.
+  Passez security_check.py sous Click et ajoutez --fail-on : 0 quand rien
+  n'atteint le seuil, 1 quand il est atteint, 2 pour une entrée
+  inexploitable. Trois codes qu'un job de CI sait distinguer.

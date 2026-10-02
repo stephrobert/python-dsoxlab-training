@@ -1,0 +1,61 @@
+[
+  {
+    "id": "CVE-2026-41000",
+    "package": "requests",
+    "version": "2.25.0",
+    "severity": "CRITICAL"
+  },
+  {
+    "id": "CVE-2026-41001",
+    "package": "urllib3",
+    "version": "1.26.4",
+    "severity": "HIGH"
+  },
+  {
+    "id": "CVE-2026-41002",
+    "package": "jinja2",
+    "version": "2.11.2",
+    "severity": "HIGH"
+  },
+  {
+    "id": "CVE-2026-41003",
+    "package": "pyyaml",
+    "version": "5.3",
+    "severity": "MEDIUM"
+  },
+  {
+    "id": "CVE-2026-41004",
+    "package": "requests",
+    "version": "2.25.0",
+    "severity": "MEDIUM"
+  },
+  {
+    "id": "CVE-2026-41005",
+    "package": "urllib3",
+    "version": "1.26.4",
+    "severity": "MEDIUM"
+  },
+  {
+    "id": "CVE-2026-41006",
+    "package": "jinja2",
+    "version": "2.11.2",
+    "severity": "LOW"
+  },
+  {
+    "id": "CVE-2026-41007",
+    "package": "pyyaml",
+    "version": "5.3",
+    "severity": "high"
+  },
+  {
+    "id": "CVE-2026-41008",
+    "package": "requests",
+    "version": "2.25.0",
+    "severity": "Medium"
+  },
+  {
+    "id": "CVE-2026-41009",
+    "package": "urllib3",
+    "version": "1.26.4"
+  }
+]

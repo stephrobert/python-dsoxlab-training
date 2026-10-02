@@ -1,4 +1,51 @@
 {
+ "automatisation-code-de-sortie": {
+  "apres": {
+   "echecs": [],
+   "passed": 5,
+   "score": 100,
+   "total": 5
+  },
+  "avant": {
+   "echecs": [
+    "test_l_aide_est_celle_de_click_et_documente_les_options",
+    "test_le_seuil_compte_tout_ce_qui_est_au_dessus",
+    "test_sous_le_seuil_ou_sans_seuil_le_pipeline_continue",
+    "test_un_critique_arrete_le_pipeline",
+    "test_une_entree_invalide_reste_un_code_2"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "date": "2026-10-02",
+  "duree_s": 4,
+  "ecarts": [],
+  "etapes": [
+   "état photographié, répertoire de travail absent",
+   "avant le travail : 0/5",
+   "après la solution : 5/5",
+   "après clean et run : 0/5",
+   "poste rendu intact"
+  ],
+  "journal": ".cache/dsoxlab/python-dsoxlab-training/validation-automatisation-code-de-sortie.log",
+  "python": "3.14.8",
+  "raisons": [],
+  "rejeu": {
+   "echecs": [
+    "test_l_aide_est_celle_de_click_et_documente_les_options",
+    "test_le_seuil_compte_tout_ce_qui_est_au_dessus",
+    "test_sous_le_seuil_ou_sans_seuil_le_pipeline_continue",
+    "test_un_critique_arrete_le_pipeline",
+    "test_une_entree_invalide_reste_un_code_2"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "uv": "0.12.21",
+  "verdict": "VALIDE"
+ },
  "automatisation-interroger-osv": {
   "apres": {
    "echecs": [],
