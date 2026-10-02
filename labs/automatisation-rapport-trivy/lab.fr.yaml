@@ -1,0 +1,7 @@
+id: automatisation-rapport-trivy
+title: "Lire un vrai rapport Trivy : résultats imbriqués, clés absentes et doublons"
+description: |
+  Trivy n'exporte pas une liste à plat : il range les vulnérabilités sous
+  chaque cible analysée, omet la clé quand une cible est saine, et répète une
+  faille trouvée dans deux fichiers. Apprenez à security_check.py à lire ce
+  format réel et à compter chaque vulnérabilité une fois.

@@ -92,5 +92,52 @@
   },
   "uv": "0.12.21",
   "verdict": "VALIDE"
+ },
+ "automatisation-rapport-trivy": {
+  "apres": {
+   "echecs": [],
+   "passed": 5,
+   "score": 100,
+   "total": 5
+  },
+  "avant": {
+   "echecs": [
+    "test_des_cibles_sans_vulnerabilite_ne_cassent_rien",
+    "test_le_vrai_rapport_trivy_compte_22_failles_distinctes",
+    "test_les_deux_formats_restent_lisibles",
+    "test_osv_interroge_les_paquets_du_rapport_trivy",
+    "test_un_rapport_trivy_genere_est_dedoublonne"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "date": "2026-10-02",
+  "duree_s": 6,
+  "ecarts": [],
+  "etapes": [
+   "état photographié, répertoire de travail absent",
+   "avant le travail : 0/5",
+   "après la solution : 5/5",
+   "après clean et run : 0/5",
+   "poste rendu intact"
+  ],
+  "journal": ".cache/dsoxlab/python-dsoxlab-training/validation-automatisation-rapport-trivy.log",
+  "python": "3.14.8",
+  "raisons": [],
+  "rejeu": {
+   "echecs": [
+    "test_des_cibles_sans_vulnerabilite_ne_cassent_rien",
+    "test_le_vrai_rapport_trivy_compte_22_failles_distinctes",
+    "test_les_deux_formats_restent_lisibles",
+    "test_osv_interroge_les_paquets_du_rapport_trivy",
+    "test_un_rapport_trivy_genere_est_dedoublonne"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "uv": "0.12.21",
+  "verdict": "VALIDE"
  }
 }

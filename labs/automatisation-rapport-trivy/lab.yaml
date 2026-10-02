@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/stephrobert/dsoxlab/main/schemas/lab.schema.json
+id: automatisation-rapport-trivy
+title: "Read a real Trivy report: nested results, missing keys and duplicates"
+description: |
+  Trivy does not export a flat list: it nests vulnerabilities under each
+  scanned target, omits the key when a target is clean, and repeats a flaw
+  found in two files. Teach security_check.py to read this real format and
+  count each vulnerability once.
+section: automatisation
+level: automatisation
+difficulty: intermediate
+lab_type: lab
+estimated_time: 40m
+skills:
+  - python
+  - dictionaries
+  - json
+  - trivy
+  - deduplication
+distros:
+  - any
+doc_url: https://blog.stephane-robert.info/docs/developper/programmation/python/dictionnaire/
+runtime:
+  type: shell
+  workdir: challenge/work
+  # Le point de départ est la solution du lab automatisation-interroger-osv,
+  # plus un vrai rapport Trivy 0.74.0.
+  fixtures:
+    - .gitignore
+    - pyproject.toml
+    - security_check.py
+    - exemples/findings.json
+    - exemples/trivy.json
+validation:
+  functional: true
+  security: false
+  persistence_after_reboot: false

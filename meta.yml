@@ -40,6 +40,6 @@ sections:
     labs:
       - automatisation-lire-un-rapport
       - automatisation-interroger-osv
-      # - automatisation-rapport-trivy   # en chantier
+      - automatisation-rapport-trivy
       # - automatisation-code-de-sortie   # en chantier
       # - automatisation-tester-son-outil   # en chantier
