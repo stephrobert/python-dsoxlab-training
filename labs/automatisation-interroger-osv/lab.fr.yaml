@@ -1,0 +1,7 @@
+id: automatisation-interroger-osv
+title: "Interroger l'API OSV : ce qu'on sait de chaque paquet du rapport"
+description: |
+  Le rapport dit ce que le scanner a vu ; la base OSV dit ce qu'on sait de
+  chaque paquet. Ajoutez --osv à security_check.py : une requête par paquet,
+  un délai maximal, et une API en panne dite en une ligne avec le code 2,
+  jamais un blocage ni une trace Python.

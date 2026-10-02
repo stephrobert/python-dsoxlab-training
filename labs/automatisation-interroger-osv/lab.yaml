@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/stephrobert/dsoxlab/main/schemas/lab.schema.json
+id: automatisation-interroger-osv
+title: "Query the OSV API: what is known about each package of the report"
+description: |
+  The report says which findings the scanner saw; the OSV database says
+  what is known about each package. Add --osv to security_check.py: one
+  request per package, a maximum delay, and an API outage reported in one
+  line with exit code 2, never a hang or a traceback.
+section: automatisation
+level: automatisation
+difficulty: beginner
+lab_type: lab
+estimated_time: 40m
+skills:
+  - python
+  - requests
+  - http-api
+  - timeouts
+  - uv
+distros:
+  - any
+doc_url: https://blog.stephane-robert.info/docs/developper/programmation/python/requests/
+runtime:
+  type: shell
+  workdir: challenge/work
+  # Le point de départ est la solution du lab automatisation-lire-un-rapport.
+  fixtures:
+    - .gitignore
+    - pyproject.toml
+    - security_check.py
+    - exemples/findings.json
+validation:
+  functional: true
+  security: false
+  persistence_after_reboot: false

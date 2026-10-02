@@ -39,7 +39,7 @@ sections:
     description: "Read a JSON report, query the OSV API, parse a real Trivy report, fail a pipeline above a severity threshold, and test the tool with pytest."
     labs:
       - automatisation-lire-un-rapport
-      # - automatisation-interroger-osv   # en chantier
+      - automatisation-interroger-osv
       # - automatisation-rapport-trivy   # en chantier
       # - automatisation-code-de-sortie   # en chantier
       # - automatisation-tester-son-outil   # en chantier

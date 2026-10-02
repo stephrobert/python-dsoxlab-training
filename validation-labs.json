@@ -1,4 +1,51 @@
 {
+ "automatisation-interroger-osv": {
+  "apres": {
+   "echecs": [],
+   "passed": 5,
+   "score": 100,
+   "total": 5
+  },
+  "avant": {
+   "echecs": [
+    "test_chaque_paquet_est_interroge_une_seule_fois",
+    "test_le_resume_reste_et_sans_osv_aucun_appel",
+    "test_les_vulnerabilites_connues_s_affichent_par_paquet",
+    "test_une_api_en_panne_se_dit_sans_trace",
+    "test_une_api_muette_ne_bloque_pas_le_pipeline"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "date": "2026-10-02",
+  "duree_s": 11,
+  "ecarts": [],
+  "etapes": [
+   "état photographié, répertoire de travail absent",
+   "avant le travail : 0/5",
+   "après la solution : 5/5",
+   "après clean et run : 0/5",
+   "poste rendu intact"
+  ],
+  "journal": ".cache/dsoxlab/python-dsoxlab-training/validation-automatisation-interroger-osv.log",
+  "python": "3.14.8",
+  "raisons": [],
+  "rejeu": {
+   "echecs": [
+    "test_chaque_paquet_est_interroge_une_seule_fois",
+    "test_le_resume_reste_et_sans_osv_aucun_appel",
+    "test_les_vulnerabilites_connues_s_affichent_par_paquet",
+    "test_une_api_en_panne_se_dit_sans_trace",
+    "test_une_api_muette_ne_bloque_pas_le_pipeline"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "uv": "0.12.21",
+  "verdict": "VALIDE"
+ },
  "automatisation-lire-un-rapport": {
   "apres": {
    "echecs": [],
