@@ -8,3 +8,14 @@ ssh/id_ed25519
 # Répertoires de travail des labs `shell` : ce que l'apprenant y écrit lui
 # appartient, et le catalogue les recrée à chaque `run`.
 labs/**/challenge/work/
+
+# Les indices en clair : la source de challenge/hints.yaml (base64), qui se
+# reproduit par scripts/ecrire_indices.py. Les publier rendrait l encodage vain.
+labs/**/challenge/hints.source.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/

@@ -1,0 +1,49 @@
+{
+ "automatisation-lire-un-rapport": {
+  "apres": {
+   "echecs": [],
+   "passed": 5,
+   "score": 100,
+   "total": 5
+  },
+  "avant": {
+   "echecs": [
+    "test_le_resume_compte_chaque_severite",
+    "test_les_severites_inconnues_ou_absentes_comptent_en_unknown",
+    "test_un_fichier_absent_se_dit_sans_trace",
+    "test_un_json_invalide_se_dit_sans_trace",
+    "test_un_rapport_vide_rend_des_zeros"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "date": "2026-10-02",
+  "duree_s": 3,
+  "ecarts": [],
+  "etapes": [
+   "état photographié, répertoire de travail absent",
+   "avant le travail : 0/5",
+   "après la solution : 5/5",
+   "après clean et run : 0/5",
+   "poste rendu intact"
+  ],
+  "journal": ".cache/dsoxlab/python-dsoxlab-training/validation-automatisation-lire-un-rapport.log",
+  "python": "3.14.8",
+  "raisons": [],
+  "rejeu": {
+   "echecs": [
+    "test_le_resume_compte_chaque_severite",
+    "test_les_severites_inconnues_ou_absentes_comptent_en_unknown",
+    "test_un_fichier_absent_se_dit_sans_trace",
+    "test_un_json_invalide_se_dit_sans_trace",
+    "test_un_rapport_vide_rend_des_zeros"
+   ],
+   "passed": 0,
+   "score": 0,
+   "total": 5
+  },
+  "uv": "0.12.21",
+  "verdict": "VALIDE"
+ }
+}
