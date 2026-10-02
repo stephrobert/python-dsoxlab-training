@@ -377,29 +377,24 @@ class ResultatAct:
         return "\n  ".join(parts)
 
 
-def _ecrire_dotenv(chemin: Path, valeurs: dict[str, str]) -> None:
-    chemin.write_text("".join(f"{k}={v}\n" for k, v in valeurs.items()), encoding="utf-8")
-    chemin.chmod(0o600)
-
-
 def jouer_act(
     depot: Path,
     evenement: str = "push",
     *,
     workflow: str | None = None,
     job: str | None = None,
-    secrets_: dict[str, str] | None = None,
-    variables: dict[str, str] | None = None,
     payload: dict | None = None,
     timeout: int = 600,
 ) -> ResultatAct:
     """Joue un workflow avec act dans une copie neuve du répertoire de travail.
 
     `workflow` est un chemin relatif au dépôt (`.github/workflows/ci.yml`),
-    `job` un identifiant de job, `secrets_` et `variables` ce que GitHub
-    fournirait par `secrets.*` et `vars.*`, `payload` le corps de l'événement
-    (`-e`). Les secrets passent par un fichier hors du dépôt joué, jamais par
-    la ligne de commande.
+    `job` un identifiant de job, `payload` le corps de l'événement (`-e`).
+
+    Contrairement à github-actions-training, aucun secret ni variable : le
+    workflow de ce catalogue n'en lit pas, et écrire des secrets dans un
+    fichier, même en 0600, est ce que CodeQL signale à raison
+    (py/clear-text-storage-sensitive-data, PR #2).
     """
     exiger_outil("act")
     image_prete()
@@ -416,12 +411,6 @@ def jouer_act(
             cmd += ["-W", workflow]
         if job:
             cmd += ["-j", job]
-        if secrets_:
-            _ecrire_dotenv(aux / "secrets.env", secrets_)
-            cmd += ["--secret-file", str(aux / "secrets.env")]
-        if variables:
-            _ecrire_dotenv(aux / "vars.env", variables)
-            cmd += ["--var-file", str(aux / "vars.env")]
         if payload is not None:
             (aux / "event.json").write_text(json.dumps(payload), encoding="utf-8")
             cmd += ["-e", str(aux / "event.json")]
