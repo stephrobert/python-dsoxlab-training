@@ -19,3 +19,7 @@ __pycache__/
 .venv/
 .pytest_cache/
 .ruff_cache/
+
+# Instructions Claude Code : propres au poste, jamais publiées.
+CLAUDE.md
+.claude/

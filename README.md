@@ -1,5 +1,13 @@
 # Python Training: verifiable labs
 
+**Language:** [English](./README.md) · [Français](./README.fr.md)
+
+[![CI](https://github.com/stephrobert/python-dsoxlab-training/actions/workflows/ci.yml/badge.svg)](https://github.com/stephrobert/python-dsoxlab-training/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/stephrobert/python-dsoxlab-training?label=OpenSSF%20Scorecard)](https://securityscorecards.dev/viewer/?uri=github.com/stephrobert/python-dsoxlab-training)
+[![Plumber compliance](https://score.getplumber.io/github.com/stephrobert/python-dsoxlab-training.svg)](https://score.getplumber.io/github.com/stephrobert/python-dsoxlab-training)
+[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](./LICENSE)
+
 The labs of the **Automation** track of the blog's
 [Python course](https://blog.stephane-robert.info/docs/developper/programmation/python/)
 (in French), played with [dsoxlab](https://github.com/stephrobert/dsoxlab).

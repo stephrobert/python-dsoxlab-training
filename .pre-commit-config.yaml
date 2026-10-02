@@ -1,0 +1,118 @@
+# Hooks pre-commit d'un dépôt de CONTENU (catalogue de labs). Arrêt net sur les
+# secrets et les clés privées, et sur les fichiers générés. Pas de mypy : il n'y
+# a pas de source de paquet, et le contrat déclaratif est validé par
+# `dsoxlab validate-structure`.
+#
+# Installation, une fois :   pre-commit install --install-hooks
+# Sur tout le dépôt :        pre-commit run --all-files
+#
+# Repris de terraform-dsoxlab-training, le catalogue frère le plus proche
+# (runtime `shell`, sans VM), avec deux différences que ce dépôt impose :
+#
+#   - les solutions de référence sont EN CLAIR dans `labs/<id>/solution/` :
+#     la solution d'un lab est le point de départ du suivant (fil rouge,
+#     voir CONTRIBUTING.md). Aucun hook de chiffrement n'a donc d'objet ici ;
+#   - les tests propres au catalogue Terraform (Floci, jetons HCP, cursus)
+#     sont remplacés par ceux de ce dépôt, sous `tests/`.
+
+minimum_pre_commit_version: "3.5.0"
+default_install_hook_types: [pre-commit, pre-push]
+
+# `labs/**/fixtures/` porte les DONNÉES d'entrée des labs, dont le contenu est
+# significatif au caractère près, et les points de départ que l'apprenant
+# reçoit : le rapport Trivy réel s'y livre tel que Trivy l'a écrit, et le code
+# de départ tel que le lab précédent l'a laissé. Les mutants du dernier lab
+# portent des défauts voulus : ruff n'a pas à les corriger.
+exclude: '^labs/.*/(fixtures|challenge/tests/mutants)/'
+
+repos:
+  # Hygiène générale, et arrêt net sur les secrets et les clés privées.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: '(^LICENSE$|\.md$)'
+      - id: end-of-file-fixer
+        exclude: '^LICENSE$'
+      - id: check-yaml # valide chaque lab.yaml et meta.yml
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-added-large-files
+        args: ['--maxkb=2048']
+      - id: detect-private-key # bloque une clé SSH privée commitée
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff (lint du python du catalogue)
+        entry: uvx ruff check --fix
+        language: system
+        types_or: [python, pyi]
+        require_serial: true
+
+      # --no-update : ne jamais aller chercher un binaire neuf au moment du
+      # hook, c'est un durcissement de la chaîne d'approvisionnement.
+      - id: trufflehog
+        name: trufflehog (scan de secrets)
+        entry: trufflehog git file://. --since-commit HEAD --results=verified --fail --no-update
+        language: system
+        pass_filenames: false
+
+      # Le catalogue des README doit lister TOUS les labs avec l'URL de leur
+      # guide. Il est généré depuis les vrais lab.yaml : un catalogue périmé
+      # bloque le push. `--no-project` : environnement éphémère avec juste
+      # pyyaml, sans créer ni synchroniser le venv du dépôt.
+      - id: catalogue-a-jour
+        name: le catalogue des README est à jour (labs + URLs de guides)
+        entry: uv run --no-project --with pyyaml python scripts/gen_catalog.py --check
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+
+      # Les indices sont en base64 : un gabarit oublié passerait toute relecture.
+      - id: indices-ecrits
+        name: les indices de chaque lab ont été écrits
+        entry: uv run --no-project --with pytest --with pyyaml pytest tests/test_hints_ecrits.py -q
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: meta-declare-les-labs
+        name: meta.yml déclare chaque lab, et rien d'autre
+        entry: uv run --no-project --with pytest --with pyyaml pytest tests/test_meta_declare_les_labs.py -q
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: style-apprenant
+        name: ni emoji ni tiret cadratin dans ce que lit l'apprenant
+        entry: uv run --no-project --with pytest --with pyyaml pytest tests/test_style_apprenant.py -q
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      # Le verdict versionné couvre-t-il tous les labs, et est-il vert ? Une
+      # milliseconde, sans rien rejouer : un lab ajouté sans campagne de
+      # validation bloque le push.
+      - id: labs-valides
+        name: chaque lab a un verdict VALIDE dans validation-labs.json
+        entry: uv run --no-project --with pyyaml python scripts/valider-labs.py --check
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
+
+      # Le contrat du catalogue, au push : `validate-structure` lit meta.yml,
+      # chaque lab.yaml, chaque fixture déclarée et chaque lien relatif des
+      # README. Il attrape ce qu'aucun test local ne voit.
+      - id: contrat-du-catalogue
+        name: dsoxlab validate-structure
+        entry: uvx dsoxlab validate-structure
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
