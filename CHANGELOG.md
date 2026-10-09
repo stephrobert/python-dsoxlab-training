@@ -9,7 +9,7 @@ This repository is a **content catalog**, not a library: it is not versioned and
 publishes no releases. The entries below date changes to the catalog, and the
 unit that matters is the lab.
 
-## [Unreleased]
+## [0.1.0] - 2026-10-09
 
 ### Added
 
@@ -37,3 +37,6 @@ unit that matters is the lab.
 - All labs proven in both directions by `scripts/valider-labs.py`:
   0 before the work, 100 after the solution, 0 again after `clean` and
   `run`. Verdicts in `validation-labs.json`.
+
+[Unreleased]: https://github.com/stephrobert/python-dsoxlab-training/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/stephrobert/python-dsoxlab-training/releases/tag/v0.1.0
