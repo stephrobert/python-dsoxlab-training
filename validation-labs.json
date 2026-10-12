@@ -18,11 +18,11 @@
    "score": 0,
    "total": 5
   },
-  "date": "2026-10-02",
+  "date": "2026-10-12",
   "duree_s": 4,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 17 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 25 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -100,11 +100,11 @@
    "score": 0,
    "total": 5
   },
-  "date": "2026-10-02",
+  "date": "2026-10-12",
   "duree_s": 11,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 17 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 25 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -147,11 +147,11 @@
    "score": 0,
    "total": 5
   },
-  "date": "2026-10-02",
+  "date": "2026-10-12",
   "duree_s": 3,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 17 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 25 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -241,11 +241,11 @@
    "score": 0,
    "total": 5
   },
-  "date": "2026-10-02",
+  "date": "2026-10-12",
   "duree_s": 5,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 17 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 25 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -288,11 +288,11 @@
    "score": 0,
    "total": 5
   },
-  "date": "2026-10-02",
+  "date": "2026-10-12",
   "duree_s": 5,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 17 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 25 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
