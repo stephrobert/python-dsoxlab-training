@@ -9,6 +9,18 @@ This repository is a **content catalog**, not a library: it is not versioned and
 publishes no releases. The entries below date changes to the catalog, and the
 unit that matters is the lab.
 
+## [0.1.1] - 2026-10-14
+
+### Changed
+
+- The five labs of the common thread replayed after the `conftest.py`
+  change.
+- The release procedure re-attests labs modified since their verdict.
+
+### Fixed
+
+- Five GitHub actions brought up to date.
+
 ## [0.1.0] - 2026-10-09
 
 ### Added
@@ -38,5 +50,6 @@ unit that matters is the lab.
   0 before the work, 100 after the solution, 0 again after `clean` and
   `run`. Verdicts in `validation-labs.json`.
 
-[Unreleased]: https://github.com/stephrobert/python-dsoxlab-training/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/stephrobert/python-dsoxlab-training/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/stephrobert/python-dsoxlab-training/releases/tag/v0.1.1
 [0.1.0]: https://github.com/stephrobert/python-dsoxlab-training/releases/tag/v0.1.0

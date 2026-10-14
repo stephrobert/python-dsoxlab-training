@@ -1,6 +1,6 @@
 [project]
 name = "python-dsoxlab-training"
-version = "0.1.0"
+version = "0.1.1"
 description = "Labs vérifiables de la formation Python du blog, joués avec dsoxlab"
 requires-python = ">=3.12"
 dependencies = [
