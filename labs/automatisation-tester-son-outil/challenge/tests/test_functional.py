@@ -35,7 +35,7 @@ from pathlib import Path
 
 import pytest
 
-from conftest import exiger_workdir, workdir_lab
+from conftest import exiger_workdir, message, workdir_lab
 
 WORKDIR = workdir_lab(__file__)
 LAB_ID = "automatisation-tester-son-outil"
@@ -63,7 +63,10 @@ def jouer_la_suite(outil: str) -> Passage:
     exiger_workdir(WORKDIR, LAB_ID)
     uv = shutil.which("uv")
     if uv is None:
-        pytest.fail("uv est introuvable sur le PATH. Lancez `mise install`.", pytrace=False)
+        pytest.fail(message(
+            en="uv cannot be found on the PATH. Run `mise install`.",
+            fr="uv est introuvable sur le PATH. Lancez `mise install`.",
+        ), pytrace=False)
     copie = Path(tempfile.mkdtemp(prefix="security-check-")) / "projet"
     shutil.copytree(WORKDIR, copie, ignore=shutil.ignore_patterns(*EXCLUS))
     shutil.copy2(outil, copie / "security_check.py")
@@ -85,34 +88,48 @@ def _exiger_reference_verte() -> Passage:
     ref = jouer_la_suite(str(REFERENCE))
     if "Failed to spawn" in ref.sortie and "pytest" in ref.sortie:
         pytest.fail(
-            "pytest n'est pas installé dans le projet : `uv add --dev pytest` le "
+            message(
+            en="pytest is not installed in the project: `uv add --dev pytest` "
+            "declares it as a development dependency.\n" + ref.resume(),
+            fr="pytest n'est pas installé dans le projet : `uv add --dev pytest` le "
             "déclare comme dépendance de développement.\n" + ref.resume(),
+        ),
             pytrace=False,
         )
-    assert ref.code == 0, (
-        "Votre suite échoue sur l'outil de RÉFÉRENCE, qui est juste : un test "
+    assert ref.code == 0, message(
+        en="Your suite fails against the REFERENCE tool, which is correct: one "
+        "of your tests expects something other than the behaviour the "
+        "previous labs asked for.\n"
+        + ref.resume(),
+        fr="Votre suite échoue sur l'outil de RÉFÉRENCE, qui est juste : un test "
         "attend autre chose que le comportement demandé par les labs précédents.\n"
-        + ref.resume()
+        + ref.resume(),
     )
     return ref
 
 
 def test_la_suite_passe_sur_l_outil_juste_et_compte_assez_de_tests() -> None:
     ref = _exiger_reference_verte()
-    assert ref.reussis >= MINIMUM_DE_TESTS, (
-        f"{ref.reussis} test(s) seulement : il en faut au moins {MINIMUM_DE_TESTS}. "
+    assert ref.reussis >= MINIMUM_DE_TESTS, message(
+        en=f"Only {ref.reussis} test(s): at least {MINIMUM_DE_TESTS} are needed. "
+        "The provided example only checks a constant; a useful suite "
+        "exercises reading, counting, deduplication and the exit codes.\n"
+        + ref.resume(),
+        fr=f"{ref.reussis} test(s) seulement : il en faut au moins {MINIMUM_DE_TESTS}. "
         "L'exemple livré ne vérifie qu'une constante ; une suite utile exerce "
         "la lecture, le compte, le dédoublonnage et les codes de sortie.\n"
-        + ref.resume()
+        + ref.resume(),
     )
 
 
 def _exiger_mutant_tue(nom: str, defaut: str, piste: str) -> None:
     _exiger_reference_verte()
     passage = jouer_la_suite(str(MUTANTS / f"{nom}.py"))
-    assert passage.code != 0 and passage.echoues > 0, (
-        f"Le mutant « {nom} » survit : votre suite passe sur un outil où {defaut}.\n"
-        f"Ajoutez un test qui l'attrape : {piste}\n" + passage.resume()
+    assert passage.code != 0 and passage.echoues > 0, message(
+        en=f"The « {nom} » mutant survives: your suite passes on a tool where "
+        f"{defaut}.\nAdd a test that catches it: {piste}\n" + passage.resume(),
+        fr=f"Le mutant « {nom} » survit : votre suite passe sur un outil où {defaut}.\n"
+        f"Ajoutez un test qui l'attrape : {piste}\n" + passage.resume(),
     )
 
 

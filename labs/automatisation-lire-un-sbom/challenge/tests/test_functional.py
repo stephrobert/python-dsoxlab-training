@@ -27,6 +27,7 @@ from conftest import (
     exiger_workdir,
     lancer_outil,
     lire_resume,
+    message,
     workdir_lab,
 )
 
@@ -68,74 +69,102 @@ def _sbom(projet: Path, serveur, *options: str):
 
 def test_chaque_composant_pypi_est_interroge_une_fois(projet: Path, serveur_osv) -> None:
     execution = _sbom(projet, serveur_osv)
-    assert execution.code == 0, (
-        "Un SBOM CycloneDX avec `--osv` doit être lu. Il se reconnaît à sa clé "
-        f"`bomFormat`, et ses composants vivent sous `components`.\n  {execution.resume()}"
+    assert execution.code == 0, message(
+        en="A CycloneDX SBOM with `--osv` must be read. It is recognised by its "
+        f"`bomFormat` key, and its components live under `components`.\n  {execution.resume()}",
+        fr="Un SBOM CycloneDX avec `--osv` doit être lu. Il se reconnaît à sa clé "
+        f"`bomFormat`, et ses composants vivent sous `components`.\n  {execution.resume()}",
     )
     recus = sorted(((r["corps"].get("package") or {}).get("name"), r["corps"].get("version"),
                     (r["corps"].get("package") or {}).get("ecosystem")) for r in serveur_osv.requetes)
     attendus = sorted((n, v, "PyPI") for n, v in PYPI)
-    assert recus == attendus, (
-        f"Requêtes reçues : {recus}\n  attendues : {attendus}\n\n"
+    assert recus == attendus, message(
+        en=f"Requests received: {recus}\n  expected: {attendus}\n\n"
+        "One request per distinct PyPI component: `requests 2.25.0` appears "
+        "twice in the SBOM. The `purl` states the ecosystem "
+        "(`pkg:pypi/...`): npm components are not queried like PyPI packages.",
+        fr=f"Requêtes reçues : {recus}\n  attendues : {attendus}\n\n"
         "Une requête par composant PyPI distinct : `requests 2.25.0` figure deux "
         "fois dans le SBOM. Le `purl` dit l'écosystème (`pkg:pypi/...`) : les "
-        "composants npm ne s'interrogent pas comme des paquets PyPI."
+        "composants npm ne s'interrogent pas comme des paquets PyPI.",
     )
 
 
 def test_le_resume_compte_les_vulnerabilites_connues_d_osv(projet: Path, serveur_osv) -> None:
     serveur_osv.reponses = REPONSES
     execution = _sbom(projet, serveur_osv)
-    assert execution.code == 0, execution.resume()
+    assert execution.code == 0, message(
+        en=execution.resume(),
+        fr=execution.resume(),
+    )
     attendu = _attendu(REPONSES)
     obtenu = lire_resume(execution.sortie)
-    assert obtenu == attendu, (
-        "Le résumé d'un SBOM compte les vulnérabilités qu'OSV connaît, une par "
+    assert obtenu == attendu, message(
+        en="An SBOM's summary counts the vulnerabilities OSV knows about, one per "
+        "advisory, with the severity of the GitHub advisory.\n"
+        f"  expected: {attendu}\n  obtained: {obtenu}\n\n"
+        "GitHub writes MODERATE where the summary says MEDIUM, and an "
+        f"advisory with no severity (PYSEC) counts as UNKNOWN.\n  {execution.resume()}",
+        fr="Le résumé d'un SBOM compte les vulnérabilités qu'OSV connaît, une par "
         "avis, avec la sévérité de l'avis GitHub.\n"
         f"  attendu : {attendu}\n  obtenu  : {obtenu}\n\n"
         "GitHub écrit MODERATE ce que le résumé appelle MEDIUM, et un avis sans "
-        f"sévérité (PYSEC) compte en UNKNOWN.\n  {execution.resume()}"
+        f"sévérité (PYSEC) compte en UNKNOWN.\n  {execution.resume()}",
     )
 
 
 def test_un_sbom_sans_osv_est_une_entree_inexploitable(projet: Path) -> None:
     execution = lancer_outil(projet, str(SBOM))
-    assert execution.code == 2 and "--osv" in execution.erreurs and "Traceback" not in execution.erreurs, (
-        "Un SBOM liste des composants, pas des vulnérabilités : sans `--osv`, "
+    assert execution.code == 2 and "--osv" in execution.erreurs and "Traceback" not in execution.erreurs, message(
+        en="An SBOM lists components, not vulnerabilities: without `--osv`, the "
+        "tool has nothing to count. It says so in one line that names "
+        "`--osv`, with code 2, rather than printing a zeroed summary that "
+        f"would suggest a healthy project.\n  {execution.resume()}",
+        fr="Un SBOM liste des composants, pas des vulnérabilités : sans `--osv`, "
         "l'outil n'a rien à compter. Il le dit en une ligne qui nomme `--osv`, "
         "avec le code 2, au lieu d'afficher un résumé à zéro qui ferait croire "
-        f"le projet sain.\n  {execution.resume()}"
+        f"le projet sain.\n  {execution.resume()}",
     )
 
 
 def test_le_seuil_s_applique_a_un_sbom(projet: Path, serveur_osv) -> None:
     serveur_osv.reponses = REPONSES
     haut = _sbom(projet, serveur_osv, "--fail-on", "HIGH")
-    assert haut.code == 1, (
-        "Le SBOM porte un HIGH (urllib3) et un CRITICAL (pyyaml) d'après OSV : "
-        f"`--fail-on HIGH` doit rendre 1.\n  {haut.resume()}"
+    assert haut.code == 1, message(
+        en="The SBOM carries a HIGH (urllib3) and a CRITICAL (pyyaml) according "
+        f"to OSV: `--fail-on HIGH` must return 1.\n  {haut.resume()}",
+        fr="Le SBOM porte un HIGH (urllib3) et un CRITICAL (pyyaml) d'après OSV : "
+        f"`--fail-on HIGH` doit rendre 1.\n  {haut.resume()}",
     )
     serveur_osv.reponses = {"requests": {"GHSA-j8r2-6x86-q33q": "MODERATE"}}
     modere = _sbom(projet, serveur_osv, "--fail-on", "HIGH")
-    assert modere.code == 0, (
-        "Avec un seul avis MODERATE, rien n'atteint HIGH : code 0. MODERATE "
-        f"est un MEDIUM, pas un HIGH.\n  {modere.resume()}"
+    assert modere.code == 0, message(
+        en="With a single MODERATE advisory, nothing reaches HIGH: code 0. "
+        f"MODERATE is a MEDIUM, not a HIGH.\n  {modere.resume()}",
+        fr="Avec un seul avis MODERATE, rien n'atteint HIGH : code 0. MODERATE "
+        f"est un MEDIUM, pas un HIGH.\n  {modere.resume()}",
     )
 
 
 def test_les_rapports_restent_lisibles_et_les_composants_npm_ignores(projet: Path, serveur_osv, tmp_path: Path) -> None:
     """Le rapport Trivy des labs précédents, et un SBOM sans aucun composant PyPI."""
     trivy = lancer_outil(projet, str(DONNEES / "trivy-multi.json"))
-    assert trivy.code == 0 and lire_resume(trivy.sortie).get("TOTAL") == 22, (
-        f"Le rapport Trivy doit toujours donner ses 22 failles distinctes.\n  {trivy.resume()}"
+    assert trivy.code == 0 and lire_resume(trivy.sortie).get("TOTAL") == 22, message(
+        en=f"The Trivy report must still give its 22 distinct flaws.\n  {trivy.resume()}",
+        fr=f"Le rapport Trivy doit toujours donner ses 22 failles distinctes.\n  {trivy.resume()}",
     )
     sbom = json.loads(SBOM.read_text(encoding="utf-8"))
     sbom["components"] = [c for c in sbom["components"] if not str(c.get("purl", "")).startswith("pkg:pypi/")]
     npm = tmp_path / "npm.cdx.json"
     npm.write_text(json.dumps(sbom), encoding="utf-8")
     execution = lancer_outil(projet, str(npm), "--osv", env={"OSV_API_URL": serveur_osv.url})
-    assert execution.code == 0 and lire_resume(execution.sortie).get("TOTAL") == 0, execution.resume()
-    assert not serveur_osv.requetes, (
-        "Un SBOM sans composant PyPI ne doit déclencher aucune requête PyPI : "
-        f"{[r['corps'] for r in serveur_osv.requetes]}"
+    assert execution.code == 0 and lire_resume(execution.sortie).get("TOTAL") == 0, message(
+        en=execution.resume(),
+        fr=execution.resume(),
+    )
+    assert not serveur_osv.requetes, message(
+        en="An SBOM with no PyPI component must trigger no PyPI request: "
+        f"{[r['corps'] for r in serveur_osv.requetes]}",
+        fr="Un SBOM sans composant PyPI ne doit déclencher aucune requête PyPI : "
+        f"{[r['corps'] for r in serveur_osv.requetes]}",
     )

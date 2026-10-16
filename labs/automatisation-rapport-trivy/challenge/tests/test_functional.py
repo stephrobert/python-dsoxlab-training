@@ -30,6 +30,7 @@ from conftest import (
     findings_au_hasard,
     lancer_outil,
     lire_resume,
+    message,
     tirage,
     workdir_lab,
 )
@@ -75,15 +76,20 @@ def trivy_au_hasard(graine: int) -> dict:
 
 
 def _exiger_resume(execution, attendu: dict[str, int], contexte: str) -> None:
-    assert execution.code == 0, (
-        f"{contexte} : l'outil devait réussir (code 0). Un rapport Trivy est un "
+    assert execution.code == 0, message(
+        en=f"{contexte}: the tool had to succeed (code 0). A Trivy report is a "
+        "JSON object, not a list: version 2 refuses it, version 3 must "
+        f"recognise it.\n  {execution.resume()}",
+        fr=f"{contexte} : l'outil devait réussir (code 0). Un rapport Trivy est un "
         "objet JSON, pas une liste : la version 2 le refuse, la version 3 doit "
-        f"le reconnaître.\n  {execution.resume()}"
+        f"le reconnaître.\n  {execution.resume()}",
     )
     obtenu = lire_resume(execution.sortie)
-    assert obtenu == attendu, (
-        f"{contexte} : le résumé ne correspond pas au rapport.\n"
-        f"  attendu : {attendu}\n  obtenu  : {obtenu}\n  {execution.resume()}"
+    assert obtenu == attendu, message(
+        en=f"{contexte}: the summary does not match the report.\n"
+        f"  expected: {attendu}\n  obtained: {obtenu}\n  {execution.resume()}",
+        fr=f"{contexte} : le résumé ne correspond pas au rapport.\n"
+        f"  attendu : {attendu}\n  obtenu  : {obtenu}\n  {execution.resume()}",
     )
 
 
@@ -93,9 +99,14 @@ def test_le_vrai_rapport_trivy_compte_22_failles_distinctes(projet: Path) -> Non
     execution = lancer_outil(projet, str(chemin))
     if execution.code == 0 and lire_resume(execution.sortie).get("TOTAL") == 26:
         pytest.fail(
-            "TOTAL vaut 26 : ce sont les occurrences, pas les failles. `requests "
+            message(
+            en="TOTAL is 26: those are occurrences, not vulnerabilities. `requests "
+            "2.25.0` is declared in two files, and its four vulnerabilities "
+            "appear in two targets; each one counts only once.",
+            fr="TOTAL vaut 26 : ce sont les occurrences, pas les failles. `requests "
             "2.25.0` est déclaré dans deux fichiers, et ses quatre vulnérabilités "
             "apparaissent dans deux cibles ; chacune ne compte qu'une fois.",
+        ),
             pytrace=False,
         )
     _exiger_resume(execution, attendu, "rapport réel de Trivy 0.74.0")
@@ -140,10 +151,15 @@ def test_osv_interroge_les_paquets_du_rapport_trivy(projet: Path, serveur_osv) -
                        for r in rapport["Results"] for v in r.get("Vulnerabilities") or []})
     execution = lancer_outil(projet, str(DONNEES / "trivy-multi.json"), "--osv",
                              env={"OSV_API_URL": serveur_osv.url})
-    assert execution.code == 0, execution.resume()
+    assert execution.code == 0, message(
+        en=execution.resume(),
+        fr=execution.resume(),
+    )
     recus = sorted(((r["corps"].get("package") or {}).get("name"), r["corps"].get("version"))
                    for r in serveur_osv.requetes)
-    assert recus == attendus, (
-        f"Avec un rapport Trivy, `--osv` interroge chaque couple (PkgName, "
-        f"InstalledVersion) une fois.\n  attendus : {attendus}\n  reçus    : {recus}"
+    assert recus == attendus, message(
+        en=f"With a Trivy report, `--osv` queries each (PkgName, InstalledVersion) "
+        f"pair once.\n  expected: {attendus}\n  received: {recus}",
+        fr=f"Avec un rapport Trivy, `--osv` interroge chaque couple (PkgName, "
+        f"InstalledVersion) une fois.\n  attendus : {attendus}\n  reçus    : {recus}",
     )

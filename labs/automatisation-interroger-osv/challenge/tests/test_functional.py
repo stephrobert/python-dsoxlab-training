@@ -27,6 +27,7 @@ from conftest import (
     exiger_workdir,
     lancer_outil,
     lire_resume,
+    message,
     workdir_lab,
 )
 
@@ -59,11 +60,15 @@ def _osv(projet: Path, rapport: Path, serveur, **env: str):
 
 
 def _exiger_succes(execution) -> None:
-    assert execution.code == 0, (
-        "`--osv` devait réussir (code 0). Si la sortie parle de `requests` "
+    assert execution.code == 0, message(
+        en="`--osv` had to succeed (code 0). If the output mentions `requests` "
+        "not found, the library is not a dependency of the project: "
+        "`uv add requests` declares it.\n"
+        f"  {execution.resume()}",
+        fr="`--osv` devait réussir (code 0). Si la sortie parle de `requests` "
         "introuvable, la bibliothèque n'est pas une dépendance du projet : "
         "`uv add requests` l'y déclare.\n"
-        f"  {execution.resume()}"
+        f"  {execution.resume()}",
     )
 
 
@@ -73,21 +78,29 @@ def test_chaque_paquet_est_interroge_une_seule_fois(projet: Path, rapport: Path,
     recus = []
     for r in serveur_osv.requetes:
         corps = r["corps"]
-        assert r["chemin"] == "/v1/query", (
-            f"Requête reçue sur {r['chemin']} : OSV répond sur `/v1/query`, "
-            "au bout de l'adresse donnée par OSV_API_URL."
+        assert r["chemin"] == "/v1/query", message(
+            en=f"Request received on {r['chemin']}: OSV answers on `/v1/query`, at "
+            "the end of the address given by OSV_API_URL.",
+            fr=f"Requête reçue sur {r['chemin']} : OSV répond sur `/v1/query`, "
+            "au bout de l'adresse donnée par OSV_API_URL.",
         )
         paquet = corps.get("package") or {}
-        assert paquet.get("ecosystem") == "PyPI", (
-            f"Corps reçu : {corps}. OSV doit savoir dans quel écosystème "
-            "chercher : `\"ecosystem\": \"PyPI\"` dans `package`."
+        assert paquet.get("ecosystem") == "PyPI", message(
+            en=f"Body received: {corps}. OSV must know which ecosystem to search "
+            "in: `\"ecosystem\": \"PyPI\"` inside `package`.",
+            fr=f"Corps reçu : {corps}. OSV doit savoir dans quel écosystème "
+            "chercher : `\"ecosystem\": \"PyPI\"` dans `package`.",
         )
         recus.append((paquet.get("name"), corps.get("version")))
-    assert sorted(recus) == sorted(ATTENDUS), (
-        f"Requêtes reçues : {sorted(recus)}\n  attendues : {sorted(ATTENDUS)}\n\n"
+    assert sorted(recus) == sorted(ATTENDUS), message(
+        en=f"Requests received: {sorted(recus)}\n  expected: {sorted(ATTENDUS)}\n\n"
+        "One request per distinct (package, version) pair of the report: "
+        "`requests 2.25.0` appears twice there, it is queried once, and "
+        "`requests 2.31.0` is another pair.",
+        fr=f"Requêtes reçues : {sorted(recus)}\n  attendues : {sorted(ATTENDUS)}\n\n"
         "Une requête par couple (paquet, version) distinct du rapport : "
         "`requests 2.25.0` y figure deux fois, il ne s'interroge qu'une fois, "
-        "et `requests 2.31.0` est un autre couple."
+        "et `requests 2.31.0` est un autre couple.",
     )
 
 
@@ -105,12 +118,17 @@ def test_les_vulnerabilites_connues_s_affichent_par_paquet(projet: Path, rapport
         "OSV requests==2.31.0: GHSA-j8r2-6x86-q33q, PYSEC-2023-74",
         "OSV urllib3==1.26.4: GHSA-v845-jxx5-vc9f",
     ]
-    assert lignes == attendu, (
-        "Les lignes OSV ne sont pas celles attendues.\n"
+    assert lignes == attendu, message(
+        en="The OSV lines are not the expected ones.\n"
+        f"  expected: {attendu}\n  obtained: {lignes}\n\n"
+        "One line per pair, sorted by package then version, in the form "
+        "`OSV package==version: ID, ID` (sorted identifiers) or `: none`.\n"
+        f"  {execution.resume()}",
+        fr="Les lignes OSV ne sont pas celles attendues.\n"
         f"  attendu : {attendu}\n  obtenu  : {lignes}\n\n"
         "Une ligne par couple, triés par paquet puis version, au format "
         "`OSV paquet==version: ID, ID` (identifiants triés) ou `: none`.\n"
-        f"  {execution.resume()}"
+        f"  {execution.resume()}",
     )
 
 
@@ -119,32 +137,46 @@ def test_le_resume_reste_et_sans_osv_aucun_appel(projet: Path, rapport: Path, se
     attendu = compter([f["severity"] for f in FINDINGS])
     avec = _osv(projet, rapport, serveur_osv)
     _exiger_succes(avec)
-    assert lire_resume(avec.sortie) == attendu, (
-        f"Avec `--osv`, le résumé par sévérité doit rester le même.\n  attendu : {attendu}\n"
-        f"  {avec.resume()}"
+    assert lire_resume(avec.sortie) == attendu, message(
+        en=f"With `--osv`, the summary per severity must stay the same.\n  expected: {attendu}\n"
+        f"  {avec.resume()}",
+        fr=f"Avec `--osv`, le résumé par sévérité doit rester le même.\n  attendu : {attendu}\n"
+        f"  {avec.resume()}",
     )
     avant = len(serveur_osv.requetes)
     sans = lancer_outil(projet, str(rapport), env={"OSV_API_URL": serveur_osv.url})
-    assert sans.code == 0 and lire_resume(sans.sortie) == attendu, sans.resume()
-    assert len(serveur_osv.requetes) == avant, (
-        "Sans `--osv`, l'outil ne doit faire aucun appel réseau : dans un "
-        "pipeline hors ligne, le simple résumé doit continuer de marcher."
+    assert sans.code == 0 and lire_resume(sans.sortie) == attendu, message(
+        en=sans.resume(),
+        fr=sans.resume(),
+    )
+    assert len(serveur_osv.requetes) == avant, message(
+        en="Without `--osv`, the tool must make no network call at all: in an "
+        "offline pipeline, the plain summary must keep working.",
+        fr="Sans `--osv`, l'outil ne doit faire aucun appel réseau : dans un "
+        "pipeline hors ligne, le simple résumé doit continuer de marcher.",
     )
 
 
 def _exiger_refus_propre(execution, indice: str, cas: str) -> None:
-    assert execution.code == 2, (
-        f"{cas} : l'outil doit sortir en 2, comme pour toute entrée inexploitable.\n"
-        f"  {execution.resume()}"
+    assert execution.code == 2, message(
+        en=f"{cas}: the tool must exit with 2, as for any unusable input.\n"
+        f"  {execution.resume()}",
+        fr=f"{cas} : l'outil doit sortir en 2, comme pour toute entrée inexploitable.\n"
+        f"  {execution.resume()}",
     )
-    assert "Traceback" not in execution.erreurs, (
-        f"{cas} : une trace Python remonte. Les exceptions de `requests` "
+    assert "Traceback" not in execution.erreurs, message(
+        en=f"{cas}: a Python traceback comes through. `requests` exceptions can "
+        "be caught, and the problem stated in one line.\n"
+        f"  {execution.resume()}",
+        fr=f"{cas} : une trace Python remonte. Les exceptions de `requests` "
         "s'attrapent, et le problème se dit en une ligne.\n"
-        f"  {execution.resume()}"
+        f"  {execution.resume()}",
     )
-    assert indice in execution.erreurs, (
-        f"{cas} : le message doit dire ce qui s'est passé (il doit contenir « {indice} »).\n"
-        f"  {execution.resume()}"
+    assert indice in execution.erreurs, message(
+        en=f"{cas}: the message must say what happened (it must contain « {indice} »).\n"
+        f"  {execution.resume()}",
+        fr=f"{cas} : le message doit dire ce qui s'est passé (il doit contenir « {indice} »).\n"
+        f"  {execution.resume()}",
     )
 
 
@@ -161,8 +193,11 @@ def test_une_api_muette_ne_bloque_pas_le_pipeline(projet: Path, rapport: Path, s
     duree = time.monotonic() - debut
     _exiger_refus_propre(execution, "OSV", "API qui ne répond pas")
     # uv et Python démarrent en moins de 2 s ; une seule requête attendue.
-    assert duree < 5, (
-        f"L'outil a attendu {duree:.1f} s : le délai maximal OSV_TIMEOUT=1 "
+    assert duree < 5, message(
+        en=f"The tool waited {duree:.1f} s: the OSV_TIMEOUT=1 maximum delay is "
+        "not applied. Without `timeout=`, `requests` waits forever.\n"
+        f"  {execution.resume()}",
+        fr=f"L'outil a attendu {duree:.1f} s : le délai maximal OSV_TIMEOUT=1 "
         "n'est pas appliqué. Sans `timeout=`, `requests` attend indéfiniment.\n"
-        f"  {execution.resume()}"
+        f"  {execution.resume()}",
     )
