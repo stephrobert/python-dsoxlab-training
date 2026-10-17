@@ -17,6 +17,15 @@ schema_version: 1
 
 repo:
   id: python-dsoxlab-training
+  # Les solutions de référence de ce catalogue sont EN CLAIR, et c'est
+  # délibéré : les sept labs sont enchaînés, et le point de départ de chacun
+  # est la solution du précédent, recopiée comme fixture. Un fichier chiffré
+  # ne pourrait pas jouer ce rôle.
+  #
+  # Sans cette déclaration, `validate-structure` les signale, à juste titre :
+  # son défaut était de ne regarder que `solution/` à la racine du dépôt, donc
+  # de ne jamais voir `labs/<lab>/solution/`. Il regarde depuis dsoxlab 0.5.0.
+  solutions: plaintext
   category: python
   title: "Python Training: verifiable labs"
   blog_url: "https://blog.stephane-robert.info/docs/developper/programmation/python/"
