@@ -35,6 +35,7 @@ from conftest import (
     findings_au_hasard,
     lancer_outil,
     lire_resume,
+    message,
     tirage,
     workdir_lab,
 )
@@ -50,16 +51,22 @@ def projet() -> Path:
 
 
 def _exiger_resume(execution, attendu: dict[str, int], contexte: str) -> None:
-    assert execution.code == 0, (
-        f"{contexte} : l'outil devait réussir (code 0).\n  {execution.resume()}"
+    assert execution.code == 0, message(
+        en=f"{contexte}: the tool had to succeed (code 0).\n  {execution.resume()}",
+        fr=f"{contexte} : l'outil devait réussir (code 0).\n  {execution.resume()}",
     )
     obtenu = lire_resume(execution.sortie)
-    assert obtenu == attendu, (
-        f"{contexte} : le résumé ne correspond pas au rapport.\n"
+    assert obtenu == attendu, message(
+        en=f"{contexte}: the summary does not match the report.\n"
+        f"  expected: {attendu}\n  obtained: {obtenu}\n\n"
+        "One line per severity, in the order CRITICAL, HIGH, MEDIUM, LOW, "
+        "UNKNOWN, in the form `CRITICAL: 2`, then `TOTAL: n`.\n"
+        f"  {execution.resume()}",
+        fr=f"{contexte} : le résumé ne correspond pas au rapport.\n"
         f"  attendu : {attendu}\n  obtenu  : {obtenu}\n\n"
         "Une ligne par sévérité, dans l'ordre CRITICAL, HIGH, MEDIUM, LOW, "
         "UNKNOWN, au format `CRITICAL: 2`, puis `TOTAL: n`.\n"
-        f"  {execution.resume()}"
+        f"  {execution.resume()}",
     )
 
 
@@ -102,22 +109,31 @@ def test_un_rapport_vide_rend_des_zeros(projet: Path, tmp_path: Path) -> None:
 
 
 def _exiger_refus_propre(execution, nom: str, cas: str) -> None:
-    assert execution.code == 2, (
-        f"{cas} : l'outil doit sortir en 2, le code des entrées invalides.\n"
-        f"  {execution.resume()}"
+    assert execution.code == 2, message(
+        en=f"{cas}: the tool must exit with 2, the code for invalid input.\n"
+        f"  {execution.resume()}",
+        fr=f"{cas} : l'outil doit sortir en 2, le code des entrées invalides.\n"
+        f"  {execution.resume()}",
     )
-    assert "Traceback" not in execution.erreurs, (
-        f"{cas} : l'outil laisse remonter une trace Python. Attrapez l'exception "
+    assert "Traceback" not in execution.erreurs, message(
+        en=f"{cas}: the tool lets a Python traceback through. Catch the exception "
+        "and state the problem in one line, on the error output.\n"
+        f"  {execution.resume()}",
+        fr=f"{cas} : l'outil laisse remonter une trace Python. Attrapez l'exception "
         "et dites le problème en une ligne, sur la sortie d'erreur.\n"
-        f"  {execution.resume()}"
+        f"  {execution.resume()}",
     )
-    assert nom in execution.erreurs, (
-        f"{cas} : le message d'erreur doit nommer le fichier en cause ({nom}).\n"
-        f"  {execution.resume()}"
+    assert nom in execution.erreurs, message(
+        en=f"{cas}: the error message must name the offending file ({nom}).\n"
+        f"  {execution.resume()}",
+        fr=f"{cas} : le message d'erreur doit nommer le fichier en cause ({nom}).\n"
+        f"  {execution.resume()}",
     )
-    assert not lire_resume(execution.sortie), (
-        f"{cas} : aucun résumé ne doit s'afficher pour un rapport illisible.\n"
-        f"  {execution.resume()}"
+    assert not lire_resume(execution.sortie), message(
+        en=f"{cas}: no summary must be printed for an unreadable report.\n"
+        f"  {execution.resume()}",
+        fr=f"{cas} : aucun résumé ne doit s'afficher pour un rapport illisible.\n"
+        f"  {execution.resume()}",
     )
 
 

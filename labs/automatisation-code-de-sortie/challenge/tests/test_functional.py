@@ -28,6 +28,7 @@ from conftest import (
     findings_au_hasard,
     lancer_outil,
     lire_resume,
+    message,
     tirage,
     workdir_lab,
 )
@@ -57,17 +58,23 @@ def _code_attendu(severites: list[str], seuil: str) -> int:
 def test_un_critique_arrete_le_pipeline(projet: Path, tmp_path: Path) -> None:
     rapport = _rapport(tmp_path, ["CRITICAL", "HIGH", "LOW"])
     execution = lancer_outil(projet, str(rapport), "--fail-on", "CRITICAL")
-    assert execution.code == 1, (
-        "Une vulnérabilité CRITICAL avec `--fail-on CRITICAL` : le code doit "
-        f"être 1, celui qui arrête le job.\n  {execution.resume()}"
+    assert execution.code == 1, message(
+        en="A CRITICAL vulnerability with `--fail-on CRITICAL`: the code must be "
+        f"1, the one that stops the job.\n  {execution.resume()}",
+        fr="Une vulnérabilité CRITICAL avec `--fail-on CRITICAL` : le code doit "
+        f"être 1, celui qui arrête le job.\n  {execution.resume()}",
     )
-    assert lire_resume(execution.sortie) == compter(["CRITICAL", "HIGH", "LOW"]), (
-        "Le résumé reste affiché quand le seuil est atteint : c'est ce que "
-        f"l'équipe lit dans le journal du job pour savoir pourquoi.\n  {execution.resume()}"
+    assert lire_resume(execution.sortie) == compter(["CRITICAL", "HIGH", "LOW"]), message(
+        en="The summary stays on screen when the threshold is reached: it is what "
+        f"the team reads in the job's log to know why.\n  {execution.resume()}",
+        fr="Le résumé reste affiché quand le seuil est atteint : c'est ce que "
+        f"l'équipe lit dans le journal du job pour savoir pourquoi.\n  {execution.resume()}",
     )
-    assert "1" in execution.erreurs and "Traceback" not in execution.erreurs, (
-        "La sortie d'erreur dit combien de vulnérabilités atteignent le seuil, "
-        f"en une ligne, sans trace Python.\n  {execution.resume()}"
+    assert "1" in execution.erreurs and "Traceback" not in execution.erreurs, message(
+        en="The error output says how many vulnerabilities reach the threshold, "
+        f"in one line, with no Python traceback.\n  {execution.resume()}",
+        fr="La sortie d'erreur dit combien de vulnérabilités atteignent le seuil, "
+        f"en une ligne, sans trace Python.\n  {execution.resume()}",
     )
 
 
@@ -80,26 +87,36 @@ def test_le_seuil_compte_tout_ce_qui_est_au_dessus(projet: Path, tmp_path: Path)
     for seuil in SEUILS:
         attendu = _code_attendu(severites, seuil)
         execution = lancer_outil(projet, str(rapport), "--fail-on", seuil)
-        assert execution.code == attendu, (
-            f"Graine {graine}, `--fail-on {seuil}` : code {execution.code}, attendu {attendu}.\n"
+        assert execution.code == attendu, message(
+            en=f"Seed {graine}, `--fail-on {seuil}`: code {execution.code}, expected {attendu}.\n"
+            f"  severities in the report: {compter(severites)}\n\n"
+            "The threshold is inclusive and counts everything AT LEAST as "
+            "serious: `--fail-on HIGH` fails on a CRITICAL. UNKNOWN reaches "
+            "no threshold.\n"
+            f"  {execution.resume()}",
+            fr=f"Graine {graine}, `--fail-on {seuil}` : code {execution.code}, attendu {attendu}.\n"
             f"  sévérités du rapport : {compter(severites)}\n\n"
             "Le seuil est inclusif et compte tout ce qui est AU MOINS aussi grave : "
             "`--fail-on HIGH` échoue sur un CRITICAL. UNKNOWN n'atteint aucun seuil.\n"
-            f"  {execution.resume()}"
+            f"  {execution.resume()}",
         )
 
 
 def test_sous_le_seuil_ou_sans_seuil_le_pipeline_continue(projet: Path, tmp_path: Path) -> None:
     rapport = _rapport(tmp_path, ["MEDIUM", "LOW", "UNKNOWN", "medium"])
     avec = lancer_outil(projet, str(rapport), "--fail-on", "high")
-    assert avec.code == 0, (
-        "Rien n'atteint HIGH (le seuil s'écrit aussi en minuscules) : code 0.\n"
-        f"  {avec.resume()}"
+    assert avec.code == 0, message(
+        en="Nothing reaches HIGH (the threshold is also accepted in lower case): "
+        f"code 0.\n  {avec.resume()}",
+        fr="Rien n'atteint HIGH (le seuil s'écrit aussi en minuscules) : code 0.\n"
+        f"  {avec.resume()}",
     )
     sans = lancer_outil(projet, str(_rapport(tmp_path, ["CRITICAL"], "critique.json")))
-    assert sans.code == 0, (
-        "Sans `--fail-on`, l'outil ne juge pas : il résume et sort en 0, même "
-        f"sur un CRITICAL.\n  {sans.resume()}"
+    assert sans.code == 0, message(
+        en="Without `--fail-on`, the tool does not judge: it summarises and exits "
+        f"with 0, even on a CRITICAL.\n  {sans.resume()}",
+        fr="Sans `--fail-on`, l'outil ne juge pas : il résume et sort en 0, même "
+        f"sur un CRITICAL.\n  {sans.resume()}",
     )
 
 
@@ -107,28 +124,45 @@ def test_une_entree_invalide_reste_un_code_2(projet: Path, tmp_path: Path) -> No
     """Un seuil inconnu et un rapport absent : 2, jamais 1."""
     rapport = _rapport(tmp_path, ["CRITICAL"])
     inconnu = lancer_outil(projet, str(rapport), "--fail-on", "SEVERE")
-    assert inconnu.code == 2 and "critical" in inconnu.erreurs.lower(), (
-        "`--fail-on SEVERE` : code 2, et le message liste les seuils acceptés. "
+    assert inconnu.code == 2 and "critical" in inconnu.erreurs.lower(), message(
+        en="`--fail-on SEVERE`: code 2, and the message lists the accepted "
+        "thresholds. Click does that on its own when the option declares its "
+        "choices.\n"
+        f"  {inconnu.resume()}",
+        fr="`--fail-on SEVERE` : code 2, et le message liste les seuils acceptés. "
         "Click le fait seul quand l'option déclare ses choix.\n"
-        f"  {inconnu.resume()}"
+        f"  {inconnu.resume()}",
     )
     absent = lancer_outil(projet, str(tmp_path / "absent.json"), "--fail-on", "CRITICAL")
-    assert absent.code == 2 and "Traceback" not in absent.erreurs, (
-        "Un rapport absent avec `--fail-on` : code 2, l'entrée est inexploitable. "
+    assert absent.code == 2 and "Traceback" not in absent.erreurs, message(
+        en="A missing report with `--fail-on`: code 2, the input cannot be used. "
+        "A code 1 would tell the pipeline « a critical flaw », which is "
+        f"false.\n  {absent.resume()}",
+        fr="Un rapport absent avec `--fail-on` : code 2, l'entrée est inexploitable. "
         "Un code 1 dirait au pipeline « une faille critique », ce qui est faux.\n"
-        f"  {absent.resume()}"
+        f"  {absent.resume()}",
     )
 
 
 def test_l_aide_est_celle_de_click_et_documente_les_options(projet: Path, tmp_path: Path) -> None:
     execution = lancer_outil(projet, "--help")
-    assert execution.code == 0, execution.resume()
+    assert execution.code == 0, message(
+        en=execution.resume(),
+        fr=execution.resume(),
+    )
     aide = execution.sortie
-    assert aide.startswith("Usage:"), (
-        "L'aide doit être celle de Click, qui commence par `Usage:` (argparse "
+    assert aide.startswith("Usage:"), message(
+        en="The help must be Click's, which starts with `Usage:` (argparse writes "
+        "`usage:`). If the tool answers that the click module is missing: "
+        "`uv add click`.\n"
+        f"  {execution.resume()}",
+        fr="L'aide doit être celle de Click, qui commence par `Usage:` (argparse "
         "écrit `usage:`). Si l'outil répond que le module click est "
         "introuvable : `uv add click`.\n"
-        f"  {execution.resume()}"
+        f"  {execution.resume()}",
     )
     for option in ("--fail-on", "--osv"):
-        assert option in aide, f"L'aide ne mentionne pas `{option}`.\n  {execution.resume()}"
+        assert option in aide, message(
+            en=f"The help does not mention `{option}`.\n  {execution.resume()}",
+            fr=f"L'aide ne mentionne pas `{option}`.\n  {execution.resume()}",
+        )
