@@ -19,7 +19,7 @@ skills:
   - supply-chain
 distros:
   - any
-doc_url: https://blog.stephane-robert.info/docs/securiser/supply-chain/sbom/
+doc_url: https://www.stephane-robert.info/docs/securiser/supply-chain/sbom/
 runtime:
   type: shell
   workdir: challenge/work

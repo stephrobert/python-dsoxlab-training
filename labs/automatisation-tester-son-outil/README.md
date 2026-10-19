@@ -11,7 +11,7 @@ know whether a green suite protects against anything.
 |---|---|
 | Target | your machine: Python and uv (`mise install`), no Docker |
 | Duration | about 45 minutes |
-| Paired lesson | [pytest in practice](https://blog.stephane-robert.info/docs/developper/programmation/python/tests/pytest/) (in French) |
+| Paired lesson | [pytest in practice](https://www.stephane-robert.info/docs/developper/programmation/python/tests/pytest/) (in French) |
 | Previous | `automatisation-code-de-sortie` |
 
 ```bash

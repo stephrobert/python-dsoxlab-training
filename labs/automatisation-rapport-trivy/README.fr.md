@@ -10,7 +10,7 @@ et des failles répétées d'une cible à l'autre, à compter une seule fois.
 |---|---|
 | Cible | votre poste : Python et uv (`mise install`), aucun Docker |
 | Durée | environ 40 minutes |
-| Leçon jumelée | [Les dictionnaires](https://blog.stephane-robert.info/docs/developper/programmation/python/dictionnaire/) |
+| Leçon jumelée | [Les dictionnaires](https://www.stephane-robert.info/docs/developper/programmation/python/dictionnaire/) |
 | Précédent | `automatisation-interroger-osv` |
 | Suite | `automatisation-code-de-sortie` part de votre solution |
 

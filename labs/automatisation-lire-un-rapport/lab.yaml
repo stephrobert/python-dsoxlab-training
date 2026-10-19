@@ -21,7 +21,7 @@ skills:
 # L'outil se joue sur le poste de l'apprenant, dans son projet uv.
 distros:
   - any
-doc_url: https://blog.stephane-robert.info/docs/developper/programmation/python/json/
+doc_url: https://www.stephane-robert.info/docs/developper/programmation/python/json/
 runtime:
   type: shell
   workdir: challenge/work

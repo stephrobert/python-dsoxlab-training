@@ -19,7 +19,7 @@ skills:
   - uv
 distros:
   - any
-doc_url: https://blog.stephane-robert.info/docs/developper/programmation/python/requests/
+doc_url: https://www.stephane-robert.info/docs/developper/programmation/python/requests/
 runtime:
   type: shell
   workdir: challenge/work

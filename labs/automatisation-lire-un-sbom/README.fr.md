@@ -10,7 +10,7 @@ le résultat avec le même seuil que les rapports de scanner.
 |---|---|
 | Cible | votre poste : Python et uv (`mise install`), aucun Docker |
 | Durée | environ 45 minutes |
-| Leçon jumelée | [SBOM : l'inventaire de ce qu'on livre](https://blog.stephane-robert.info/docs/securiser/supply-chain/sbom/) |
+| Leçon jumelée | [SBOM : l'inventaire de ce qu'on livre](https://www.stephane-robert.info/docs/securiser/supply-chain/sbom/) |
 | Précédent | `automatisation-dans-la-ci` |
 
 ```bash

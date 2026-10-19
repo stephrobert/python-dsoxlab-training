@@ -11,7 +11,7 @@ code de sortie.
 |---|---|
 | Cible | votre poste : Python et uv (`mise install`), aucun Docker |
 | Durée | environ 30 minutes |
-| Leçon jumelée | [Manipuler du JSON](https://blog.stephane-robert.info/docs/developper/programmation/python/json/) |
+| Leçon jumelée | [Manipuler du JSON](https://www.stephane-robert.info/docs/developper/programmation/python/json/) |
 | Suite | `automatisation-interroger-osv` part de votre solution |
 
 ```bash

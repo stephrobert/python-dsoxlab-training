@@ -10,7 +10,7 @@ the same threshold as scanner reports.
 |---|---|
 | Target | your machine: Python and uv (`mise install`), no Docker |
 | Duration | about 45 minutes |
-| Paired lesson | [SBOM: the inventory of what you ship](https://blog.stephane-robert.info/docs/securiser/supply-chain/sbom/) (in French) |
+| Paired lesson | [SBOM: the inventory of what you ship](https://www.stephane-robert.info/docs/securiser/supply-chain/sbom/) (in French) |
 | Previous | `automatisation-dans-la-ci` |
 
 ```bash

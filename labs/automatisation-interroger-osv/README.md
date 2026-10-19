@@ -11,7 +11,7 @@ pipeline tool does.
 |---|---|
 | Target | your machine: Python and uv (`mise install`), no Docker |
 | Duration | about 40 minutes |
-| Paired lesson | [Calling APIs with requests](https://blog.stephane-robert.info/docs/developper/programmation/python/requests/) (in French) |
+| Paired lesson | [Calling APIs with requests](https://www.stephane-robert.info/docs/developper/programmation/python/requests/) (in French) |
 | Previous | `automatisation-lire-un-rapport` |
 | Next | `automatisation-rapport-trivy` starts from your solution |
 
