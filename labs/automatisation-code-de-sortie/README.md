@@ -11,7 +11,7 @@ code.
 |---|---|
 | Target | your machine: Python and uv (`mise install`), no Docker |
 | Duration | about 40 minutes |
-| Paired lesson | [Click: command-line tools in Python](https://blog.stephane-robert.info/docs/developper/programmation/python/click/) (in French) |
+| Paired lesson | [Click: command-line tools in Python](https://www.stephane-robert.info/docs/developper/programmation/python/click/) (in French) |
 | Previous | `automatisation-rapport-trivy` |
 | Next | `automatisation-tester-son-outil` starts from your solution |
 

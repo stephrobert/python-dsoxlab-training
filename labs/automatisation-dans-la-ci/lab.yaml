@@ -21,7 +21,7 @@ skills:
 # l'image du runner ubuntu-24.04, épinglée par digest dans .actrc.
 distros:
   - ubuntu24
-doc_url: https://blog.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/
+doc_url: https://www.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/
 runtime:
   type: shell
   workdir: challenge/work

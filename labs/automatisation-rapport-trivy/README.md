@@ -10,7 +10,7 @@ repeated from one target to another, to be counted once.
 |---|---|
 | Target | your machine: Python and uv (`mise install`), no Docker |
 | Duration | about 40 minutes |
-| Paired lesson | [Dictionaries](https://blog.stephane-robert.info/docs/developper/programmation/python/dictionnaire/) (in French) |
+| Paired lesson | [Dictionaries](https://www.stephane-robert.info/docs/developper/programmation/python/dictionnaire/) (in French) |
 | Previous | `automatisation-interroger-osv` |
 | Next | `automatisation-code-de-sortie` starts from your solution |
 

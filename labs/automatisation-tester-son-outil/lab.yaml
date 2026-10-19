@@ -19,7 +19,7 @@ skills:
   - mutation-testing
 distros:
   - any
-doc_url: https://blog.stephane-robert.info/docs/developper/programmation/python/tests/pytest/
+doc_url: https://www.stephane-robert.info/docs/developper/programmation/python/tests/pytest/
 runtime:
   type: shell
   workdir: challenge/work

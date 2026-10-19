@@ -9,7 +9,7 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](./LICENSE)
 
 Les labs de la piste **Automatisation** de la
-[formation Python](https://blog.stephane-robert.info/docs/developper/programmation/python/)
+[formation Python](https://www.stephane-robert.info/docs/developper/programmation/python/)
 du blog, joués avec [dsoxlab](https://github.com/stephrobert/dsoxlab).
 
 ## Ce que c'est
@@ -169,13 +169,13 @@ Un 0 accuserait le lab de ce qui manque au poste.
 
 | Lab (id) | Titre | Niveau | Certif | Runtime | Guide compagnon |
 |---|---|---|---|---|---|
-| `automatisation-lire-un-rapport` | Lire le rapport d'un scanner : compter les vulnérabilités par sévérité | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/developper/programmation/python/json/) |
-| `automatisation-interroger-osv` | Interroger l'API OSV : ce qu'on sait de chaque paquet du rapport | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/developper/programmation/python/requests/) |
-| `automatisation-rapport-trivy` | Lire un vrai rapport Trivy : résultats imbriqués, clés absentes et doublons | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/developper/programmation/python/dictionnaire/) |
-| `automatisation-code-de-sortie` | Un code de sortie qu'un pipeline sait exploiter : --fail-on avec Click | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/developper/programmation/python/click/) |
-| `automatisation-tester-son-outil` | Tester son outil : une suite pytest qui attrape quatre vrais bugs | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/developper/programmation/python/tests/pytest/) |
-| `automatisation-dans-la-ci` | Une porte de sécurité dans le pipeline : security_check.py dans GitHub Actions | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/) |
-| `automatisation-lire-un-sbom` | Lire un SBOM : croiser un inventaire CycloneDX avec la base OSV | automatisation | - | shell | [guide](https://blog.stephane-robert.info/docs/securiser/supply-chain/sbom/) |
+| `automatisation-lire-un-rapport` | Lire le rapport d'un scanner : compter les vulnérabilités par sévérité | automatisation | - | shell | [guide](https://www.stephane-robert.info/docs/developper/programmation/python/json/) |
+| `automatisation-interroger-osv` | Interroger l'API OSV : ce qu'on sait de chaque paquet du rapport | automatisation | - | shell | [guide](https://www.stephane-robert.info/docs/developper/programmation/python/requests/) |
+| `automatisation-rapport-trivy` | Lire un vrai rapport Trivy : résultats imbriqués, clés absentes et doublons | automatisation | - | shell | [guide](https://www.stephane-robert.info/docs/developper/programmation/python/dictionnaire/) |
+| `automatisation-code-de-sortie` | Un code de sortie qu'un pipeline sait exploiter : --fail-on avec Click | automatisation | - | shell | [guide](https://www.stephane-robert.info/docs/developper/programmation/python/click/) |
+| `automatisation-tester-son-outil` | Tester son outil : une suite pytest qui attrape quatre vrais bugs | automatisation | - | shell | [guide](https://www.stephane-robert.info/docs/developper/programmation/python/tests/pytest/) |
+| `automatisation-dans-la-ci` | Une porte de sécurité dans le pipeline : security_check.py dans GitHub Actions | automatisation | - | shell | [guide](https://www.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/) |
+| `automatisation-lire-un-sbom` | Lire un SBOM : croiser un inventaire CycloneDX avec la base OSV | automatisation | - | shell | [guide](https://www.stephane-robert.info/docs/securiser/supply-chain/sbom/) |
 
 _7 labs, table générée par `scripts/gen_catalog.py`._
 <!-- LABS:END -->

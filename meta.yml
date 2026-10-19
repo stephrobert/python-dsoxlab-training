@@ -4,7 +4,7 @@
 #
 # Source de vérité de l'ordre des labs, calqué sur la piste « Automatisation »
 # de la formation Python du blog :
-#   https://blog.stephane-robert.info/docs/developper/programmation/python/parcours-fondamentaux/?profil=automatisation
+#   https://www.stephane-robert.info/docs/developper/programmation/python/parcours-fondamentaux/?profil=automatisation
 #
 # Un FIL ROUGE : les cinq labs de la section `automatisation` construisent un
 # seul outil, `security_check.py`, version après version. Le point de départ
@@ -28,7 +28,7 @@ repo:
   solutions: plaintext
   category: python
   title: "Python Training: verifiable labs"
-  blog_url: "https://blog.stephane-robert.info/docs/developper/programmation/python/"
+  blog_url: "https://www.stephane-robert.info/docs/developper/programmation/python/"
   issues_url: "https://github.com/stephrobert/python-dsoxlab-training/issues"
   description: |
     The Python a DevOps or DevSecOps engineer writes every week: read a

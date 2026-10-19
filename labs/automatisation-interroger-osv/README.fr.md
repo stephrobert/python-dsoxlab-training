@@ -11,7 +11,7 @@ outil de pipeline.
 |---|---|
 | Cible | votre poste : Python et uv (`mise install`), aucun Docker |
 | Durée | environ 40 minutes |
-| Leçon jumelée | [Appeler des API avec requests](https://blog.stephane-robert.info/docs/developper/programmation/python/requests/) |
+| Leçon jumelée | [Appeler des API avec requests](https://www.stephane-robert.info/docs/developper/programmation/python/requests/) |
 | Précédent | `automatisation-lire-un-rapport` |
 | Suite | `automatisation-rapport-trivy` part de votre solution |
 

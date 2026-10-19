@@ -10,7 +10,7 @@ qu'une vulnérabilité CRITICAL apparaît.
 |---|---|
 | Cible | votre poste : uv, Python et act (`mise install`), **Docker** qui répond |
 | Durée | environ 40 minutes |
-| Leçon jumelée | [Pipeline CI durci](https://blog.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/) |
+| Leçon jumelée | [Pipeline CI durci](https://www.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/) |
 | Précédent | `automatisation-tester-son-outil` |
 
 ```bash

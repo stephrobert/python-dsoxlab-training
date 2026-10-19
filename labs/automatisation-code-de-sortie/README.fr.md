@@ -10,7 +10,7 @@ il le dit dans la seule langue qu'un pipeline comprend, son code de sortie.
 |---|---|
 | Cible | votre poste : Python et uv (`mise install`), aucun Docker |
 | Durée | environ 40 minutes |
-| Leçon jumelée | [Click : des CLI en Python](https://blog.stephane-robert.info/docs/developper/programmation/python/click/) |
+| Leçon jumelée | [Click : des CLI en Python](https://www.stephane-robert.info/docs/developper/programmation/python/click/) |
 | Précédent | `automatisation-rapport-trivy` |
 | Suite | `automatisation-tester-son-outil` part de votre solution |
 

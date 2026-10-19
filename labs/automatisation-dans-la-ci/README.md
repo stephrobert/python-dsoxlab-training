@@ -10,7 +10,7 @@ soon as a CRITICAL vulnerability appears.
 |---|---|
 | Target | your machine: uv, Python and act (`mise install`), a running **Docker** |
 | Duration | about 40 minutes |
-| Paired lesson | [Hardened CI pipeline](https://blog.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/) (in French) |
+| Paired lesson | [Hardened CI pipeline](https://www.stephane-robert.info/docs/pipeline-cicd/github/securite/lab/pipeline-ci/) (in French) |
 | Previous | `automatisation-tester-son-outil` |
 
 ```bash

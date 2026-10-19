@@ -11,7 +11,7 @@ c'est la seule façon de savoir si une suite verte protège de quelque chose.
 |---|---|
 | Cible | votre poste : Python et uv (`mise install`), aucun Docker |
 | Durée | environ 45 minutes |
-| Leçon jumelée | [pytest en pratique](https://blog.stephane-robert.info/docs/developper/programmation/python/tests/pytest/) |
+| Leçon jumelée | [pytest en pratique](https://www.stephane-robert.info/docs/developper/programmation/python/tests/pytest/) |
 | Précédent | `automatisation-code-de-sortie` |
 
 ```bash

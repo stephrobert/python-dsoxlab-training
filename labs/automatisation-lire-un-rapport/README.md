@@ -10,7 +10,7 @@ pipeline tool does, in one line and with an exit code.
 |---|---|
 | Target | your machine: Python and uv (`mise install`), no Docker |
 | Duration | about 30 minutes |
-| Paired lesson | [Working with JSON](https://blog.stephane-robert.info/docs/developper/programmation/python/json/) (in French) |
+| Paired lesson | [Working with JSON](https://www.stephane-robert.info/docs/developper/programmation/python/json/) (in French) |
 | Next | `automatisation-interroger-osv` starts from your solution |
 
 ```bash
