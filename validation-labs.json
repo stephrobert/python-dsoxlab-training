@@ -24,8 +24,8 @@
    "status": "failed",
    "total": 5
   },
-  "date": "2026-10-17",
-  "duree_s": 4,
+  "date": "2026-10-19",
+  "duree_s": 5,
   "ecarts": [],
   "etapes": [
    "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
@@ -74,8 +74,8 @@
    "status": "failed",
    "total": 5
   },
-  "date": "2026-10-17",
-  "duree_s": 18,
+  "date": "2026-10-19",
+  "duree_s": 21,
   "ecarts": [],
   "etapes": [
    "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
@@ -124,7 +124,7 @@
    "status": "failed",
    "total": 5
   },
-  "date": "2026-10-17",
+  "date": "2026-10-19",
   "duree_s": 11,
   "ecarts": [],
   "etapes": [
@@ -180,7 +180,7 @@
    "status": "failed",
    "total": 5
   },
-  "date": "2026-10-17",
+  "date": "2026-10-19",
   "duree_s": 3,
   "ecarts": [],
   "etapes": [
@@ -236,7 +236,7 @@
    "status": "failed",
    "total": 5
   },
-  "date": "2026-10-17",
+  "date": "2026-10-19",
   "duree_s": 9,
   "ecarts": [],
   "etapes": [
@@ -292,8 +292,8 @@
    "status": "failed",
    "total": 5
   },
-  "date": "2026-10-17",
-  "duree_s": 5,
+  "date": "2026-10-19",
+  "duree_s": 6,
   "ecarts": [],
   "etapes": [
    "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
@@ -348,8 +348,8 @@
    "status": "failed",
    "total": 5
   },
-  "date": "2026-10-17",
-  "duree_s": 5,
+  "date": "2026-10-19",
+  "duree_s": 6,
   "ecarts": [],
   "etapes": [
    "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
