@@ -3,7 +3,10 @@
   "apres": {
    "echecs": [],
    "passed": 5,
+   "recorded": true,
    "score": 100,
+   "skipped": 0,
+   "status": "passed",
    "total": 5
   },
   "avant": {
@@ -15,14 +18,17 @@
     "test_une_entree_invalide_reste_un_code_2"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
-  "date": "2026-10-12",
+  "date": "2026-10-17",
   "duree_s": 4,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 25 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -40,7 +46,10 @@
     "test_une_entree_invalide_reste_un_code_2"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
   "uv": "0.12.21",
@@ -50,20 +59,26 @@
   "apres": {
    "echecs": [],
    "passed": 5,
+   "recorded": true,
    "score": 100,
+   "skipped": 0,
+   "status": "passed",
    "total": 5
   },
   "avant": {
    "echecs": [],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
-  "date": "2026-10-02",
-  "duree_s": 21,
+  "date": "2026-10-17",
+  "duree_s": 18,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 17 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -75,7 +90,10 @@
   "rejeu": {
    "echecs": [],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
   "uv": "0.12.21",
@@ -85,7 +103,10 @@
   "apres": {
    "echecs": [],
    "passed": 5,
+   "recorded": true,
    "score": 100,
+   "skipped": 0,
+   "status": "passed",
    "total": 5
   },
   "avant": {
@@ -97,14 +118,17 @@
     "test_une_api_muette_ne_bloque_pas_le_pipeline"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
-  "date": "2026-10-12",
+  "date": "2026-10-17",
   "duree_s": 11,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 25 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -122,7 +146,10 @@
     "test_une_api_muette_ne_bloque_pas_le_pipeline"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
   "uv": "0.12.21",
@@ -132,7 +159,10 @@
   "apres": {
    "echecs": [],
    "passed": 5,
+   "recorded": true,
    "score": 100,
+   "skipped": 0,
+   "status": "passed",
    "total": 5
   },
   "avant": {
@@ -144,14 +174,17 @@
     "test_un_rapport_vide_rend_des_zeros"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
-  "date": "2026-10-12",
+  "date": "2026-10-17",
   "duree_s": 3,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 25 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -169,7 +202,10 @@
     "test_un_rapport_vide_rend_des_zeros"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
   "uv": "0.12.21",
@@ -179,7 +215,10 @@
   "apres": {
    "echecs": [],
    "passed": 5,
+   "recorded": true,
    "score": 100,
+   "skipped": 0,
+   "status": "passed",
    "total": 5
   },
   "avant": {
@@ -191,14 +230,17 @@
     "test_un_sbom_sans_osv_est_une_entree_inexploitable"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
-  "date": "2026-10-02",
+  "date": "2026-10-17",
   "duree_s": 9,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 17 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -216,7 +258,10 @@
     "test_un_sbom_sans_osv_est_une_entree_inexploitable"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
   "uv": "0.12.21",
@@ -226,7 +271,10 @@
   "apres": {
    "echecs": [],
    "passed": 5,
+   "recorded": true,
    "score": 100,
+   "skipped": 0,
+   "status": "passed",
    "total": 5
   },
   "avant": {
@@ -238,14 +286,17 @@
     "test_un_rapport_trivy_genere_est_dedoublonne"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
-  "date": "2026-10-12",
+  "date": "2026-10-17",
   "duree_s": 5,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 25 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -263,7 +314,10 @@
     "test_un_rapport_trivy_genere_est_dedoublonne"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
   "uv": "0.12.21",
@@ -273,7 +327,10 @@
   "apres": {
    "echecs": [],
    "passed": 5,
+   "recorded": true,
    "score": 100,
+   "skipped": 0,
+   "status": "passed",
    "total": 5
   },
   "avant": {
@@ -285,14 +342,17 @@
     "test_la_suite_passe_sur_l_outil_juste_et_compte_assez_de_tests"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
-  "date": "2026-10-12",
+  "date": "2026-10-17",
   "duree_s": 5,
   "ecarts": [],
   "etapes": [
-   "état photographié, répertoire de travail absent, 25 conteneur(s) Docker présents",
+   "état photographié, répertoire de travail absent, 6 conteneur(s) Docker présents",
    "avant le travail : 0/5",
    "après la solution : 5/5",
    "après clean et run : 0/5",
@@ -310,7 +370,10 @@
     "test_la_suite_passe_sur_l_outil_juste_et_compte_assez_de_tests"
    ],
    "passed": 0,
+   "recorded": true,
    "score": 0,
+   "skipped": 0,
+   "status": "failed",
    "total": 5
   },
   "uv": "0.12.21",
