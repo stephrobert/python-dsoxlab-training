@@ -71,7 +71,7 @@ tirés au hasard, et la graine s'affiche en cas d'échec.
 ```text
 labs/<lab>/
 ├── lab.yaml            # le contrat (id, niveau, runtime, fixtures, validation…)
-├── lab.fr.yaml         # surcharge française de title/description SEULEMENT
+├── lab.fr.yaml         # surcharge française du title, de la description et des libellés de critères SEULEMENT
 ├── README.md / README.fr.md        # la présentation
 ├── scenario.md / scenario.fr.md    # la situation, l'état visé, la preuve
 ├── fixtures/           # le point de départ, copié dans challenge/work
