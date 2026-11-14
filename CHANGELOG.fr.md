@@ -9,6 +9,17 @@ Ce dépôt est un **catalogue de contenu**, pas une bibliothèque : il n'est pas
 versionné et ne publie aucune release. Les entrées ci-dessous datent les
 modifications du catalogue, et l'unité qui compte est le lab.
 
+## [Non publié]
+
+### Modifié
+
+- **Le README ne recopie plus la documentation du moteur, il y renvoie**
+  (issue dsoxlab #201). Les sous-sections « contrat déclaratif » et « cycle de
+  vie d'un lab » décrivaient `dsoxlab` lui-même, et une telle copie dérive à
+  chaque version du moteur. Elles laissent la place à des liens vers le
+  contrat, les commandes et le guide de l'auteur de dsoxlab. Ce qui est propre
+  au catalogue reste.
+
 ## [0.2.2] - 2026-10-23
 
 ### Ajouté
