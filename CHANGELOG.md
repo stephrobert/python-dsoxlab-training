@@ -9,6 +9,16 @@ This repository is a **content catalog**, not a library: it is not versioned and
 publishes no releases. The entries below date changes to the catalog, and the
 unit that matters is the lab.
 
+## [Unreleased]
+
+### Changed
+
+- **The README no longer copies the engine's documentation, it links to it**
+  (dsoxlab issue #201). The "declarative contract" and "lab lifecycle"
+  subsections described `dsoxlab` itself, and such a copy drifts with every
+  engine release. They give way to links to the contract, the commands and the
+  catalog author guide of dsoxlab. What belongs to this catalog stays.
+
 ## [0.2.2] - 2026-10-23
 
 ### Added
