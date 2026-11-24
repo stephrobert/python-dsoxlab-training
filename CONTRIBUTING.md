@@ -71,7 +71,6 @@ labs/<lab>/
 ├── lab.yaml            # the contract (id, level, runtime, fixtures, validation…)
 ├── lab.fr.yaml         # French override of title, description and criteria labels ONLY
 ├── README.md / README.fr.md        # the presentation
-├── scenario.md / scenario.fr.md    # the situation, the target state, the proof
 ├── fixtures/           # the starting material, copied into challenge/work
 ├── solution/           # the reference solution, laid over challenge/work
 └── challenge/

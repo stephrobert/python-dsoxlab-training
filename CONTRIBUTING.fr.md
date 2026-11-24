@@ -73,7 +73,6 @@ labs/<lab>/
 ├── lab.yaml            # le contrat (id, niveau, runtime, fixtures, validation…)
 ├── lab.fr.yaml         # surcharge française du title, de la description et des libellés de critères SEULEMENT
 ├── README.md / README.fr.md        # la présentation
-├── scenario.md / scenario.fr.md    # la situation, l'état visé, la preuve
 ├── fixtures/           # le point de départ, copié dans challenge/work
 ├── solution/           # la solution de référence, posée sur challenge/work
 └── challenge/
